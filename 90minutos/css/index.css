@@ -1,0 +1,533 @@
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS DE LA PÁGINA DE INICIO
+   ========================================================================== */
+
+/* 1. SECCIÓN HERO (Banner Principal) */
+.hero-inicio {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+    url('../recursos/background-banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #0d160f;
+  padding: 100px 40px;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+}
+
+.caja-hero {
+  max-width: 600px;
+}
+
+.subtitulo-hero {
+  color: #888888;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.titulo-hero {
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.descripcion-hero {
+  color: #cccccc;
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.botones-hero {
+  display: flex;
+  gap: 15px;
+}
+
+.boton-azul {
+  background-color: #4f8bf5;
+  color: #000000;
+  padding: 12px 24px;
+  font-weight: bold;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+}
+
+.boton-oscuro {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #333333;
+  padding: 12px 24px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+/* 2. BARRA DE BÚSQUEDA */
+.seccion-buscador {
+  padding: 20px 40px;
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+}
+
+.buscador {
+  display: flex;
+  align-items: center;
+  background-color: #181818;
+  border: 1px solid #282828;
+  border-radius: 4px;
+  padding: 10px 15px;
+  width: 100%;
+  max-width: 1200px;
+  gap: 15px;
+}
+
+.icono-buscador {
+  width: 18px;
+  height: 18px;
+  opacity: 0.6;
+}
+
+.buscador label {
+  display: none;
+}
+
+.buscador input[type='search'] {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  flex-grow: 1;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.buscador button[type='submit'] {
+  background: none;
+  border: none;
+  color: #888888;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* 3. CONTENIDO PRINCIPAL (Filtros + Productos) */
+.cuerpo-principal {
+  display: flex;
+  padding: 40px;
+  gap: 40px;
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+.columna-filtros {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.titulo-filtros {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.titulo-filtros img {
+  width: 16px;
+  height: 16px;
+}
+
+.titulo-filtros h2 {
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.columna-filtros fieldset {
+  border: none;
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+.columna-filtros legend {
+  color: #666666;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.botones-filtro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.boton-filtro {
+  background-color: #181818;
+  color: #888888;
+  border: 1px solid #282828;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.boton-filtro.active {
+  background-color: #1e3a8a;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.boton-filtro-azul.active {
+  background-color: #1d4ed8;
+  color: #ffffff;
+  border-color: #3b82f6;
+}
+
+.columna-filtros ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.columna-filtros ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.columna-filtros input[type='checkbox'] {
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.columna-filtros label {
+  font-size: 0.9rem;
+  color: #aaaaaa;
+  cursor: pointer;
+}
+
+.columna-productos {
+  flex-grow: 1;
+}
+
+.encabezado-productos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #222222;
+  padding-bottom: 15px;
+}
+
+.encabezado-productos h2 {
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+
+.encabezado-productos p {
+  color: #666666;
+  font-size: 0.85rem;
+}
+
+.contenedor-tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tarjeta-producto {
+  background-color: #181818;
+  border: 1px solid #222222;
+  border-radius: 6px;
+  width: calc(33.333% - 14px);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.etiqueta {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background-color: #121212;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #333333;
+}
+
+.etiqueta-azul {
+  background-color: #1e3a8a;
+  border-color: #2563eb;
+}
+
+.tarjeta-producto img {
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  background-color: #ffffff;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.nombre-precio {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.tarjeta-producto h3 {
+  font-size: 0.95rem;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+.precio {
+  color: #93c5fd;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.descripcion-producto {
+  color: #666666;
+  font-size: 0.8rem;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.tags-producto {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.tags-producto span {
+  background-color: #121212;
+  color: #666666;
+  font-size: 0.65rem;
+  padding: 3px 6px;
+  border-radius: 3px;
+  border: 1px solid #222222;
+}
+
+/* Subtítulo de tarjeta en desktop (oculto) */
+.tarjeta-subtitulo {
+  display: none;
+}
+
+/* ==========================================================================
+   ESTILOS DE BARRA DE ENVÍO Y FILTROS MÓVIL
+   ========================================================================== */
+.barra-envio {
+  background-color: #0c0c0c;
+  border-bottom: 1px solid #222222;
+  padding: 12px 20px;
+  text-align: center;
+}
+
+.barra-envio p {
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.filtros-movil {
+  display: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Hero Sección Móvil */
+  .hero-inicio {
+    padding: 80px 20px;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .caja-hero {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .titulo-hero {
+    font-size: 2.2rem;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+  }
+
+  .descripcion-hero {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    max-width: 90%;
+  }
+
+  .botones-hero {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Ocultar el botón secundario en móviles */
+  .botones-hero a:last-child {
+    display: none;
+  }
+
+  .botones-hero a:first-child {
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  /* Ocultar buscador en móvil */
+  .seccion-buscador {
+    display: none;
+  }
+
+  /* Barra de filtros tipo Pill en móvil */
+  .filtros-movil {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 15px 20px;
+    background-color: #121212;
+    border-bottom: 1px solid #222222;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .filtros-movil::-webkit-scrollbar {
+    display: none; /* Ocultar barra de scroll en Chrome/Safari */
+  }
+
+  .boton-pill {
+    background-color: #181818;
+    border: 1px solid #282828;
+    color: #888888;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+  }
+
+  .boton-pill.active {
+    background-color: #1e3a8a;
+    border-color: #2563eb;
+    color: #ffffff;
+  }
+
+  /* Cuerpo Principal Móvil (Ocultar filtros de barra lateral) */
+  .cuerpo-principal {
+    flex-direction: column;
+    padding: 20px 15px;
+    gap: 20px;
+  }
+
+  .columna-filtros {
+    display: none;
+  }
+
+  .columna-productos {
+    width: 100%;
+  }
+
+  .encabezado-productos {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+  }
+
+  .encabezado-productos h2 {
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .encabezado-productos p {
+    font-size: 0.75rem;
+  }
+
+  /* Grilla de productos (2 Columnas) */
+  .contenedor-tarjetas {
+    gap: 15px;
+  }
+
+  .tarjeta-producto {
+    width: calc(50% - 7.5px);
+    padding: 12px;
+  }
+
+  /* Imagen en 2 columnas */
+  .tarjeta-producto img {
+    height: 180px;
+    margin-bottom: 10px;
+  }
+
+  /* Subtítulo de liga y era arriba del título en móvil */
+  .tarjeta-subtitulo {
+    display: block;
+    font-size: 0.65rem;
+    color: #888888;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Título y precio apilados verticalmente */
+  .nombre-precio {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 0;
+  }
+
+  .tarjeta-producto h3 {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .precio {
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+
+  /* Ocultar descripción y tags en móvil */
+  .descripcion-producto {
+    display: none;
+  }
+
+  .tags-producto {
+    display: none;
+  }
+}

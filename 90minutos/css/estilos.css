@@ -1,0 +1,342 @@
+/* ==========================================================================
+   ESTILOS GENERALES Y BASE - 90 MINUTOS
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212; /* Fondo oscuro del diseño */
+  color: #ffffff; /* Texto blanco por defecto */
+  font-family: Arial, Helvetica, sans-serif; /* Tipografía limpia y estándar */
+  line-height: 1.6;
+}
+
+/* Enlaces generales */
+a {
+  color: #ffffff;
+  text-decoration: none; /* Quita el subrayado */
+}
+
+/* Listas generales */
+ul {
+  list-style: none; /* Quita los puntos de las listas */
+}
+
+/* Imágenes */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Botones e Inputs comunes */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   ESTRUCTURA DEL HEADER (Encabezado)
+   ========================================================================== */
+header {
+  background-color: #0c0c0c;
+  border-bottom: 1px solid #222222;
+  padding: 20px 40px;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav div a {
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+header nav ul {
+  display: flex;
+  gap: 30px;
+}
+
+header nav ul li a {
+  font-size: 0.95rem;
+  color: #aaaaaa;
+}
+
+header nav ul li a[aria-current='page'] {
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
+  padding-bottom: 5px;
+}
+
+/* Enlaces derecha (Mi Cuenta / Carrito) */
+header nav div:last-child {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+header nav div a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+header nav div img {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   ESTRUCTURA DEL FOOTER (Pie de página)
+   ========================================================================== */
+footer {
+  background-color: #0c0c0c;
+  border-top: 1px solid #222222;
+  padding: 60px 40px 20px 40px;
+  margin-top: 60px;
+}
+
+/* Contenedor principal de las 4 columnas del footer */
+footer > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* Estilo individual para cada bloque del footer */
+footer section {
+  flex: 1;
+  min-width: 200px;
+}
+
+footer section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+footer section .titulo-columna {
+  font-size: 1rem;
+  color: #888888;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+footer section p {
+  color: #888888;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+footer section ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+footer section ul a {
+  color: #888888;
+  font-size: 0.9rem;
+}
+
+/* Formulario del Newsletter */
+footer section form {
+  display: flex;
+  gap: 10px;
+}
+
+footer section input[type='email'] {
+  background-color: #1a1a1a;
+  border: 1px solid #333333;
+  color: #ffffff;
+  padding: 10px;
+  flex-grow: 1;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+footer section button[type='submit'] {
+  background-color: #93c5fd; /* Celeste del diseño */
+  color: #121212;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Copyright abajo del todo */
+footer > div:last-child {
+  border-top: 1px solid #222222;
+  padding-top: 20px;
+  text-align: center;
+}
+
+footer > div:last-child p {
+  color: #555555;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Clase para ocultar texto de forma accesible */
+.oculto {
+  position: absolute;
+  left: -9999px;
+}
+
+/* ==========================================================================
+   RESPONSIVE (Header y Footer)
+   ========================================================================== */
+.hamburger-menu {
+  display: none;
+}
+
+.footer-movil {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Header Móvil */
+  .hamburger-menu {
+    display: block;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    outline: none;
+  }
+
+  header {
+    padding: 15px 20px;
+  }
+
+  header nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Logo en el centro */
+  header nav div:first-of-type {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  header nav div:first-of-type a {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+  }
+
+  /* Ocultar enlaces de navegación del header */
+  header nav ul {
+    display: none;
+  }
+
+  header nav ul.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #0c0c0c;
+    border-bottom: 1px solid #222222;
+    padding: 20px;
+    gap: 15px;
+    z-index: 100;
+  }
+
+  header nav ul.active li a {
+    color: #ffffff;
+    font-size: 1.1rem;
+    display: block;
+    padding: 5px 0;
+  }
+
+
+  /* Ocultar botón de cuenta y texto del carrito */
+  header nav div:last-child a:first-child {
+    display: none;
+  }
+
+  header nav div:last-child a span {
+    display: none;
+  }
+
+  header nav div:last-child {
+    gap: 0;
+  }
+
+  /* Footer Móvil */
+  footer {
+    padding: 40px 20px;
+    margin-top: 40px;
+  }
+
+  footer > div:not(.footer-movil) {
+    display: none;
+  }
+
+  .footer-movil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .footer-movil h3 {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .footer-movil-links {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+  }
+
+  .footer-movil-links a {
+    color: #888888;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+
+  .footer-movil-links a:hover {
+    color: #ffffff;
+  }
+
+  .footer-movil p {
+    color: #555555;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin: 10px 0 0 0;
+    text-transform: uppercase;
+  }
+}

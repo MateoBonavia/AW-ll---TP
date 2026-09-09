@@ -1,0 +1,340 @@
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS DE LA PÁGINA DE CONTACTO
+   ========================================================================== */
+
+/* 1. SECCIÓN HERO */
+.hero-contacto {
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-contacto h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero-contacto p {
+  color: #cccccc;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+/* 2. ESTRUCTURA PRINCIPAL (Formulario + Información) */
+.contenedor-contacto {
+  display: flex;
+  align-items: stretch;
+  padding: 40px;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.columna-formulario {
+  flex: 1.3;
+  display: flex;
+  flex-direction: column;
+}
+
+.formulario {
+  background-color: #181818;
+  border: 1px solid #282828;
+  border-radius: 6px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.campo-formulario {
+  margin-bottom: 25px;
+}
+
+.campo-formulario label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #888888;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.campo-formulario input[type='text'],
+.campo-formulario input[type='email'],
+.campo-formulario textarea {
+  width: 100%;
+  background-color: #111111;
+  border: 1px solid #282828;
+  color: #ffffff;
+  padding: 14px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.campo-formulario textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.formulario button[type='submit'] {
+  background-color: #4f8bf5;
+  color: #000000;
+  border: none;
+  padding: 14px 28px;
+  font-weight: bold;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* 3. COLUMNA DE INFORMACIÓN Y SHOWROOM */
+.columna-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Tarjeta Atención Inmediata */
+.tarjeta-soporte {
+  background-color: #181818;
+  border: 1px solid #282828;
+  border-radius: 6px;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.tarjeta-soporte h3 {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.tarjeta-soporte p {
+  color: #888888;
+  font-size: 0.85rem;
+}
+
+.tarjeta-soporte img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Sección Showroom */
+.seccion-showroom {
+  background-color: #181818;
+  border: 1px solid #282828;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.seccion-showroom img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.info-showroom {
+  padding: 25px;
+}
+
+.info-showroom h3 {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.info-showroom address {
+  font-style: normal;
+  color: #888888;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.info-showroom ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-top: 1px solid #282828;
+  padding-top: 20px;
+}
+
+.info-showroom ul li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #888888;
+  font-size: 0.9rem;
+}
+
+.info-showroom ul li img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+}
+
+/* Ocultar elementos móviles por defecto en escritorio */
+.header-showroom-movil,
+.badge-direccion,
+.boton-flotante-soporte {
+  display: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-contacto {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .hero-contacto h1 {
+    font-size: 2.2rem;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-contacto p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .contenedor-contacto {
+    flex-direction: column;
+    padding: 20px 15px;
+    gap: 30px;
+  }
+
+  .formulario {
+    padding: 25px 20px;
+  }
+
+  .campo-formulario {
+    margin-bottom: 20px;
+  }
+
+  .formulario button[type='submit'] {
+    width: 100%;
+    justify-content: center;
+    background-color: #3b82f6;
+    background-image: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    color: #ffffff;
+    padding: 16px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+
+  /* Ocultar tarjeta de atención inmediata y showroom tradicional */
+  .tarjeta-soporte {
+    display: none;
+  }
+
+  .seccion-showroom {
+    background: transparent;
+    border: none;
+  }
+
+  .seccion-showroom .info-showroom {
+    display: none;
+  }
+
+  /* Mostrar y estilar showroom móvil */
+  .header-showroom-movil {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 15px 0;
+  }
+
+  .header-showroom-movil h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin: 0;
+  }
+
+  .header-showroom-movil span {
+    display: block;
+    font-size: 0.75rem;
+    color: #888888;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .boton-pin-mapa {
+    background-color: #1c1c1c;
+    border: 1px solid #282828;
+    color: #ffffff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .boton-pin-mapa svg {
+    color: #888888;
+  }
+
+  .contenedor-mapa {
+    position: relative;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .badge-direccion {
+    display: block;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    border: 1px solid #282828;
+  }
+
+  /* Botón flotante verde */
+  .boton-flotante-soporte {
+    display: flex;
+    position: fixed;
+    bottom: 25px;
+    right: 20px;
+    background-color: #10b981;
+    background-image: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    z-index: 99;
+  }
+}
