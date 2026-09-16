@@ -1,0 +1,145 @@
+[
+  {
+    "id": "argentina-2024-titular",
+    "nombre": "Argentina Titular 2024 (Copa América)",
+    "descripcion": "Camiseta oficial titular de la Selección Argentina para la Copa América 2024. Presenta los tradicionales bastones celestes y blancos con detalles dorados, las tres estrellas y el parche oficial de Campeón del Mundo FIFA en el centro.",
+    "precio": 90,
+    "imagenes": [
+      "./recursos/Camisetas/Argentina/titular/titular_frente.jpg",
+      "./recursos/Camisetas/Argentina/titular/titular_dorso.jpg",
+      "./recursos/Camisetas/Argentina/titular/titular_detalle.jpg"
+    ],
+    "etiqueta": "BESTSELLER",
+    "año": "2024",
+    "liga": "selecciones",
+    "talles": ["S", "M", "L"],
+    "tags": ["SELECCIÓN", "COPA AMÉRICA", "CAMPEÓN DEL MUNDO"]
+  },
+  {
+    "id": "chelsea-2025-titular",
+    "nombre": "Chelsea Titular 2025",
+    "descripcion": "Camiseta oficial titular del Chelsea FC para la temporada 20225. Destaca por su tono azul vibrante con trama gráfica simulando fuego líquido, cuello estilo polo y detalles dorados en el Swoosh y el escudo.",
+    "precio": 80,
+    "imagenes": [
+      "./recursos/Camisetas/Chelsea/titular/titular_frente.jpg",
+      "./recursos/Camisetas/Chelsea/titular/titular_dorso.jpg"
+    ],
+    "etiqueta": "NUEVO",
+    "año": "2025",
+    "liga": "premier",
+    "talles": ["M", "L", "XL"],
+    "tags": ["PREMIER LEAGUE", "INGLATERRA", "CHELSEA"]
+  },
+  {
+    "id": "racing-2024-titular",
+    "nombre": "Racing Club Titular 2024",
+    "descripcion": "Camiseta oficial titular de Racing Club para la temporada 2024. Presenta los tradicionales franjas verticales celestes y blancas con detalles en azul marino en cuello y mangas, e incluye el lema 'El Primer Grande' en el interior.",
+    "precio": 75,
+    "imagenes": [
+      "./recursos/Camisetas/Racing Club/titular/titular_frente.jpg",
+      "./recursos/Camisetas/Racing Club/titular/titular_dorso.jpg",
+      "./recursos/Camisetas/Racing Club/titular/titular_cuello.jpg"
+    ],
+    "etiqueta": "HISTÓRICA",
+    "año": "2024",
+    "liga": "argentina",
+    "talles": ["S", "M"],
+    "tags": ["ARGENTINA", "LIGA PROFESIONAL", "RACING CLUB"]
+  },
+  {
+    "id": "river-2024-titular",
+    "nombre": "River Plate Titular 2024-25",
+    "descripcion": "Camiseta oficial titular de River Plate para la temporada 2024-25. Destaca por su clásica banda roja cruzada, cuello en V con vivos en rojo y negro, y las tres tiras de Adidas ubicadas horizontalmente en los puños de las mangas.",
+    "precio": 85,
+    "imagenes": [
+      "./recursos/Camisetas/River Plate/titular/titular_frente.jpg",
+      "./recursos/Camisetas/River Plate/titular/titular_dorso.jpg",
+      "./recursos/Camisetas/River Plate/titular/titular_escudo.jpg"
+    ],
+    "etiqueta": "TOP SELLER",
+    "año": "2024",
+    "liga": "argentina",
+    "talles": ["M", "L", "XL"],
+    "tags": ["ARGENTINA", "LIGA PROFESIONAL", "RIVER PLATE"]
+  },
+  {
+    "id": "inter-milan-2023-alternativa",
+    "nombre": "Inter de Milán Alternativa 2023-24",
+    "descripcion": "Camiseta oficial tercera/alternativa del Inter de Milán para la temporada 2023-24. Diseñada en tono azul oscuro con intensos detalles naranjas en cuello, mangas y costuras, destacando el escudo del club centrado en el pecho.",
+    "precio": 85,
+    "imagenes": [
+      "./recursos/Camisetas/Inter Milan/Alternativa/alternativa_frente.jpg",
+      "./recursos/Camisetas/Inter Milan/Alternativa/alternativa_espalda.jpg",
+      "./recursos/Camisetas/Inter Milan/Alternativa/alternativa_escudo.jpg"
+    ],
+    "etiqueta": "NUEVO",
+    "año": "2023",
+    "liga": "serie_a",
+    "talles": ["S", "M", "L", "XL"],
+    "tags": ["ITALIA", "SERIE A", "INTER DE MILÁN"]
+  },
+  {
+    "id": "platense-2024-titular",
+    "nombre": "Platense Titular 2024",
+    "descripcion": "Camiseta oficial titular del Club Atlético Platense para la temporada 2024. Diseñada por Puma, presenta su clásico color marrón de base con la icónica franja horizontal blanca en el pecho y detalles a contraste en cuello y mangas.",
+    "precio": 70,
+    "imagenes": [
+      "./recursos/Camisetas/Platense/Alternativa/alternativa_frente.jpg",
+      "./recursos/Camisetas/Platense/Alternativa/alternativa_espalda.jpg",
+      "./recursos/Camisetas/Platense/Alternativa/alternativa_escudo.jpg"
+    ],
+    "etiqueta": "NUEVO",
+    "año": "2024",
+    "liga": "argentina",
+    "talles": ["S", "M", "L", "XL"],
+    "tags": ["ARGENTINA", "LIGA PROFESIONAL", "PLATENSE"]
+  },
+  {
+    "id": "platense-2024-tercera",
+    "nombre": "Platense Tercera 2024 (Edición Especial Black & Copper)",
+    "descripcion": "Camiseta oficial tercera/edición especial del Club Atlético Platense para la temporada 2024. Presenta una elegancia de base negra con estampado del monograma histórico CAP en marca de agua, complementado con detalles, escudo y sponsors en un exclusivo tono cobre metalizado.",
+    "precio": 70,
+    "imagenes": [
+      "./recursos/Camisetas/Platense/Secundaria/secundaria_frente.jpg",
+      "./recursos/Camisetas/Platense/Secundaria/secundaria_espalda.jpg",
+      "./recursos/Camisetas/Platense/Secundaria/secundaria_escudo.jpg"
+    ],
+    "etiqueta": "EDICIÓN ESPECIAL",
+    "año": "2024",
+    "liga": "argentina",
+    "talles": ["S", "M", "L", "XL"],
+    "tags": ["ARGENTINA", "LIGA PROFESIONAL", "PLATENSE"]
+  },
+  {
+    "id": "racing-2024-entrenamiento",
+    "nombre": "Racing Club Camiseta Entrenamiento / Pre-Match 2024",
+    "descripcion": "Camiseta oficial de entrenamiento y pre-partido de Racing Club para la temporada 2024. Diseñada por Kappa, cuenta con un llamativo estampado gráfico abstracto en tonalidades azul marino, celeste y blanco con el escudo aplicado en el pecho.",
+    "precio": 65,
+    "imagenes": [
+      "./recursos/Camisetas/Racing Club/Entrenamiento/entrenamiento_frente.jpg",
+      "./recursos/Camisetas/Racing Club/Entrenamiento/entrenamiento_espalda.jpg",
+      "./recursos/Camisetas/Racing Club/Entrenamiento/entrenamiento_escudo.jpg"
+    ],
+    "etiqueta": "NUEVO",
+    "año": "2024",
+    "liga": "argentina",
+    "talles": ["S", "M", "L", "XL"],
+    "tags": ["ARGENTINA", "LIGA PROFESIONAL", "RACING CLUB"]
+  },
+  {
+    "id": "racing-2024-suplente",
+    "nombre": "Racing Club Suplente 2024",
+    "descripcion": "Camiseta oficial alternativa/suplente de Racing Club para la temporada 2024. Diseñada por Kappa, presenta una elegante base en azul marino con cuello redondo y vivos en los puños en tonos celeste y blanco, sumado al sello distintivo 'El Primer Grande' en la parte interna del cuello.",
+    "precio": 75,
+    "imagenes": [
+      "./recursos/Camisetas/Racing Club/Visitante/visitante_frente.jpg",
+      "./recursos/Camisetas/Racing Club/Visitante/visitante_espalda.jpg",
+      "./recursos/Camisetas/Racing Club/Visitante/visitante_escudo.jpg"
+    ],
+    "etiqueta": "NUEVO",
+    "año": "2024",
+    "liga": "argentina",
+    "talles": ["S", "M", "L", "XL"],
+    "tags": ["ARGENTINA", "LIGA PROFESIONAL", "RACING CLUB"]
+  }
+]

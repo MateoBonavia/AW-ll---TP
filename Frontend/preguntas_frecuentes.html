@@ -1,238 +1,172 @@
 <!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preguntas Frecuentes - 90 Minutos</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="css/preguntas_frecuentes.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Preguntas Frecuentes - 90 Minutos</title>
-  <link rel="stylesheet" href="css/estilos.css" />
-  <link rel="stylesheet" href="css/preguntas_frecuentes.css" />
-</head>
+  <body>
+    <!-- Header compartido cargado desde componentes/header.html. -->
+    <div id="header-container"></div>
 
-<body>
-  <header>
-    <nav aria-label="Navegación principal">
-      <!-- Menú Hamburguesa para Móvil -->
-      <button class="hamburger-menu" aria-label="Abrir menú">☰</button>
-
-      <!-- Logo de la marca -->
-      <div>
-        <a href="index.html">90 minutos</a>
-      </div>
-
-      <!-- Menú de navegación -->
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <!-- Página actual marcada para accesibilidad -->
-        <li>
-          <a href="preguntas_frecuentes.html" aria-current="page">Preguntas Frecuentes</a>
-        </li>
-        <li><a href="contacto.html">Contacto</a></li>
-      </ul>
-
-      <!-- Acceso a cuenta y carrito -->
-      <div>
-        <a href="#"><img src="./recursos/Icon_profile.png" alt="Perfil" /><span>Mi Cuenta</span></a>
-        <a href="#"><img src="./recursos/Icon_cart.png" alt="Carrito" /><span>Carrito (0)</span></a>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section aria-labelledby="faq-title" class="hero-preguntas">
-      <p class="subtitulo-faq">CENTRO DE AYUDA</p>
-      <h1 id="faq-title">Preguntas Frecuentes</h1>
-      <p class="descripcion-hero">
-        Todo lo que necesitas saber sobre envíos, cambios y nuestra curaduría
-        de reliquias históricas del fútbol.
-      </p>
-    </section>
-
-    <section class="seccion-buscador">
-      <form action="#" role="search" class="buscador">
-        <img src="./recursos/Icon_search.png" alt="" aria-hidden="true" />
-        <label for="faq-search" class="oculto">Busca una duda específica</label>
-        <input type="search" id="faq-search" placeholder="Busca una duda específica..." />
-      </form>
-    </section>
-
-    <!-- TARJETAS DE CATEGORÍAS -->
-    <section aria-label="Categorías de ayuda" class="seccion-categorias">
-      <div class="contenedor-categorias">
-        <!-- Categoría 1: Envíos -->
-        <article class="tarjeta-categoria">
-          <img src="./recursos/Icon_shipping.png" alt="" aria-hidden="true" />
-          <h3>Envíos</h3>
-          <p>Tiempos de entrega y seguimiento de tu pedido.</p>
-        </article>
-
-        <!-- Categoría 2: Cambios -->
-        <article class="tarjeta-categoria">
-          <img src="./recursos/Icon_change.png" alt="" aria-hidden="true" />
-          <h3>Cambios</h3>
-          <p>Políticas de devolución y garantía de autenticidad.</p>
-        </article>
-
-        <!-- Categoría 3: Pagos -->
-        <article class="tarjeta-categoria">
-          <img src="./recursos/Icon_payment.png" alt="" aria-hidden="true" />
-          <h3>Pagos</h3>
-          <p>Métodos de pago aceptados y seguridad financiera.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- SECCIÓN PREGUNTAS -->
-    <section aria-label="Lista de preguntas y respuestas" class="seccion-preguntas">
-      <h2 class="titulo-seccion-preguntas">PREGUNTAS FRECUENTES</h2>
-
-      <!-- Pregunta 1 -->
-      <details>
-        <summary>
-          ¿Cuánto tarda en llegar mi pedido?
-          <img src="./recursos/Icon_chevron_down.png" alt="" aria-hidden="true" />
-        </summary>
-        <div>
-          <p>
-            Los tiempos de entrega varían según tu ubicación. Para envíos nacionales, el plazo estimado es de 3 a 7 días
-            hábiles. Puedes realizar el seguimiento desde tu perfil.
-          </p>
-        </div>
-      </details>
-
-      <!-- Pregunta 2 -->
-      <details>
-        <summary>
-          ¿Las camisetas son originales?
-          <img src="./recursos/Icon_chevron_down.png" alt="" aria-hidden="true" />
-        </summary>
-        <div>
-          <p>
-            Cada prenda pasa por un riguroso proceso de verificación por expertos antes de ser puesta a la venta para
-            asegurar su autenticidad.
-          </p>
-        </div>
-      </details>
-
-      <!-- Pregunta 3 -->
-      <details>
-        <summary>
-          ¿Cómo realizo un cambio de talle?
-          <img src="./recursos/Icon_chevron_down.png" alt="" aria-hidden="true" />
-        </summary>
-        <div>
-          <p>
-            Puedes iniciar un proceso de cambio contactándote con nuestro equipo de soporte dentro de los 30 días de
-            recibida la prenda.
-          </p>
-        </div>
-      </details>
-
-      <!-- Pregunta 4 -->
-      <details>
-        <summary>
-          ¿Qué métodos de pago aceptan?
-          <img src="./recursos/Icon_chevron_down.png" alt="" aria-hidden="true" />
-        </summary>
-        <div>
-          <p>
-            Aceptamos todas las tarjetas de crédito, débito, transferencia bancaria y Mercado Pago.
-          </p>
-        </div>
-      </details>
-    </section>
-
-    <!-- BANNER DE SOPORTE -->
-    <section class="banner-soporte">
-      <div>
-        <h2 id="support-title">¿AÚN TIENES DUDAS?</h2>
-        <p>NUESTRO EQUIPO ESTÁ LISTO PARA ASISTIRTE.</p>
-      </div>
-      <div>
-        <a href="contacto.html">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" class="icono-soporte"
-            style="margin-right: 8px; vertical-align: middle;">
-            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-            <path
-              d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
-            </path>
-          </svg>
-          Hablar con Soporte
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div>
-      <section>
-        <h3>90 minutos</h3>
-        <p>
-          Rescatando la historia del fútbol, una reliquia a la vez. Desde el
-          túnel hasta tu colección.
+    <main>
+      <section aria-labelledby="faq-title" class="hero-preguntas">
+        <p class="subtitulo-faq">CENTRO DE AYUDA</p>
+        <h1 id="faq-title">Preguntas Frecuentes</h1>
+        <p class="descripcion-hero">
+          Todo lo que necesitas saber sobre envíos, cambios y nuestra curaduría
+          de reliquias históricas del fútbol.
         </p>
       </section>
 
-      <section>
-        <h3 class="titulo-columna">SOPORTE</h3>
-        <ul>
-          <li><a href="#">Privacidad</a></li>
-          <li><a href="#">Términos de Servicio</a></li>
-          <li><a href="#">Envíos</a></li>
-          <li><a href="#">Devoluciones</a></li>
-        </ul>
-      </section>
-
-      <section>
-        <h3 class="titulo-columna">PRODUCTO</h3>
-        <ul>
-          <li><a href="#">Modernas</a></li>
-          <li><a href="#">Clásicas Retro</a></li>
-          <li><a href="#">Ediciones Limitadas</a></li>
-          <li><a href="#">Accesorios</a></li>
-        </ul>
-      </section>
-
-      <!-- Newsletter -->
-      <section>
-        <h3 class="titulo-columna">NEWSLETTER</h3>
-        <p>Suscríbete para lanzamientos exclusivos.</p>
-        <form action="./" method="post">
-          <label for="newsletter-email" class="oculto">Correo electrónico para newsletter</label>
-          <input type="email" id="newsletter-email" name="email" placeholder="Email" required />
-          <button type="submit">UNIRSE</button>
+      <section class="seccion-buscador">
+        <form action="#" role="search" class="buscador">
+          <img src="./recursos/Icon_search.png" alt="" aria-hidden="true" />
+          <label for="faq-search" class="oculto"
+            >Busca una duda específica</label
+          >
+          <input
+            type="search"
+            id="faq-search"
+            placeholder="Busca una duda específica..."
+          />
         </form>
       </section>
-    </div>
 
-    <!-- Copyright -->
-    <div>
-      <p>&copy; 2026 90 MINUTOS.</p>
-    </div>
+      <!-- TARJETAS DE CATEGORÍAS -->
+      <section aria-label="Categorías de ayuda" class="seccion-categorias">
+        <div class="contenedor-categorias">
+          <!-- Categoría 1: Envíos -->
+          <article class="tarjeta-categoria">
+            <img src="./recursos/Icon_shipping.png" alt="" aria-hidden="true" />
+            <h3>Envíos</h3>
+            <p>Tiempos de entrega y seguimiento de tu pedido.</p>
+          </article>
 
-    <!-- Pie de página simplificado para móviles -->
-    <div class="footer-movil">
-      <h3>90 minutos</h3>
-      <div class="footer-movil-links">
-        <a href="#">NEWSLETTER</a>
-        <a href="#">SOPORTE</a>
-        <a href="#">LEGAL</a>
-      </div>
-      <p>&copy; 2026 90 MINUTOS.</p>
-    </div>
-  </footer>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuBtn = document.querySelector('.hamburger-menu');
-      const menuList = document.querySelector('header nav ul');
-      if (menuBtn && menuList) {
-        menuBtn.addEventListener('click', () => {
-          menuList.classList.toggle('active');
-        });
-      }
-    });
-  </script>
-</body>
+          <!-- Categoría 2: Cambios -->
+          <article class="tarjeta-categoria">
+            <img src="./recursos/Icon_change.png" alt="" aria-hidden="true" />
+            <h3>Cambios</h3>
+            <p>Políticas de devolución y garantía de autenticidad.</p>
+          </article>
 
+          <!-- Categoría 3: Pagos -->
+          <article class="tarjeta-categoria">
+            <img src="./recursos/Icon_payment.png" alt="" aria-hidden="true" />
+            <h3>Pagos</h3>
+            <p>Métodos de pago aceptados y seguridad financiera.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECCIÓN PREGUNTAS -->
+      <section
+        aria-label="Lista de preguntas y respuestas"
+        class="seccion-preguntas"
+      >
+        <h2 class="titulo-seccion-preguntas">PREGUNTAS FRECUENTES</h2>
+
+        <!-- Pregunta 1 -->
+        <details>
+          <summary>¿Cuánto tarda en llegar mi pedido?</summary>
+          <div>
+            <p>
+              Los tiempos de entrega varían según tu ubicación. Para envíos
+              nacionales, el plazo estimado es de 3 a 7 días hábiles. Puedes
+              realizar el seguimiento desde tu perfil.
+            </p>
+          </div>
+        </details>
+
+        <!-- Pregunta 2 -->
+        <details>
+          <summary>¿Las camisetas son originales?</summary>
+          <div>
+            <p>
+              Cada prenda pasa por un riguroso proceso de verificación por
+              expertos antes de ser puesta a la venta para asegurar su
+              autenticidad.
+            </p>
+          </div>
+        </details>
+
+        <!-- Pregunta 3 -->
+        <details>
+          <summary>¿Cómo realizo un cambio de talle?</summary>
+          <div>
+            <p>
+              Puedes iniciar un proceso de cambio contactándote con nuestro
+              equipo de soporte dentro de los 30 días de recibida la prenda.
+            </p>
+          </div>
+        </details>
+
+        <!-- Pregunta 4 -->
+        <details>
+          <summary>¿Qué métodos de pago aceptan?</summary>
+          <div>
+            <p>
+              Aceptamos todas las tarjetas de crédito, débito, transferencia
+              bancaria y Mercado Pago.
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <!-- BANNER DE SOPORTE -->
+      <section class="banner-soporte">
+        <div>
+          <h2 id="support-title">¿AÚN TIENES DUDAS?</h2>
+          <p>NUESTRO EQUIPO ESTÁ LISTO PARA ASISTIRTE.</p>
+        </div>
+        <div>
+          <a href="contacto.html">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icono-soporte"
+              style="margin-right: 8px; vertical-align: middle"
+            >
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+              <path
+                d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
+              ></path>
+            </svg>
+            Hablar con Soporte
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer compartido cargado desde componentes/footer.html. -->
+    <div id="footer-container"></div>
+    <script type="module">
+      import { cargarFooter, cargarHeader } from './js/componentes.js';
+      import { inicializarFormularios } from './js/formularios.js';
+
+      // Espera ambos componentes para que el newsletter ya exista al conectarlo.
+      await Promise.all([cargarHeader(), cargarFooter()]);
+      inicializarFormularios();
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.querySelector('.hamburger-menu');
+        const menuList = document.querySelector('header nav ul');
+        if (menuBtn && menuList) {
+          menuBtn.addEventListener('click', () => {
+            menuList.classList.toggle('active');
+          });
+        }
+      });
+    </script>
+  </body>
 </html>

@@ -2,6 +2,20 @@
    ESTILOS GENERALES Y BASE - 90 MINUTOS
    ========================================================================== */
 
+/* Variables compartidas: mantienen la identidad visual en todas las páginas. */
+:root {
+  --color-fondo: #121212;
+  --color-superficie: #181818;
+  --color-superficie-oscura: #0c0c0c;
+  --color-borde: #282828;
+  --color-texto: #ffffff;
+  --color-texto-suave: #888888;
+  --color-acento: #3b82f6;
+  --color-acento-suave: #93c5fd;
+  --color-error: #fca5a5;
+  --radio: 6px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,15 +23,15 @@
 }
 
 body {
-  background-color: #121212; /* Fondo oscuro del diseño */
-  color: #ffffff; /* Texto blanco por defecto */
+  background-color: var(--color-fondo); /* Fondo oscuro del diseño */
+  color: var(--color-texto); /* Texto blanco por defecto */
   font-family: Arial, Helvetica, sans-serif; /* Tipografía limpia y estándar */
   line-height: 1.6;
 }
 
 /* Enlaces generales */
 a {
-  color: #ffffff;
+  color: var(--color-texto);
   text-decoration: none; /* Quita el subrayado */
 }
 
@@ -39,6 +53,18 @@ input,
 textarea,
 select {
   font-family: inherit;
+}
+
+/* Mensajes que confirman acciones o explican errores en formularios frontend. */
+.mensaje-formulario {
+  min-height: 1.5rem;
+  margin-top: 10px;
+  color: var(--color-acento-suave);
+  font-size: 0.85rem;
+}
+
+.mensaje-formulario--error {
+  color: var(--color-error);
 }
 
 /* ==========================================================================
@@ -272,7 +298,6 @@ footer > div:last-child p {
     display: block;
     padding: 5px 0;
   }
-
 
   /* Ocultar botón de cuenta y texto del carrito */
   header nav div:last-child a:first-child {

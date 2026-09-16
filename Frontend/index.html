@@ -9,417 +9,397 @@
     <link rel="stylesheet" href="css/detalle_producto.css?v=4" />
   </head>
   <body>
-    <!-- HEADER -->
-    <header>
-      <nav aria-label="Navegación principal">
-        <!-- Menú Hamburguesa para Móvil -->
-        <button class="hamburger-menu" aria-label="Abrir menú">☰</button>
-
-        <!-- Logo de la marca -->
-        <div>
-          <a href="index.html">90 minutos</a>
-        </div>
-
-        <!-- Menú de navegación -->
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="preguntas_frecuentes.html">Preguntas Frecuentes</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-
-        <!-- Acceso a cuenta y carrito -->
-        <div>
-          <a href="#"><img src="./recursos/Icon_profile.png" alt="Perfil" /><span>Mi Cuenta</span></a>
-          <a href="#"><img src="./recursos/Icon_cart.png" alt="Carrito" /><span>Carrito (0)</span></a>
-        </div>
-      </nav>
-    </header>
+    <!-- Header compartido cargado desde componentes/header.html. -->
+    <div id="header-container"></div>
 
     <main>
+      <!-- Vista principal: se oculta cuando la SPA muestra un detalle. -->
       <div id="vista-inicio">
-      <section class="hero-inicio">
-        <!-- Imagen del banner de fondo -->
-        <header class="caja-hero">
-          <p class="subtitulo-hero">THE STADIUM CURATOR</p>
-          <h1 class="titulo-hero">LA HISTORIA SE VISTE.</h1>
-          <p class="descripcion-hero">
-            Selección exclusiva de indumentaria futbolística. Desde las
-            reliquias de los 90 hasta el diseño de elite actual. Siente el
-            césped en cada fibra.
-          </p>
+        <section class="hero-inicio">
+          <!-- Imagen del banner de fondo -->
+          <header class="caja-hero">
+            <p class="subtitulo-hero">THE STADIUM CURATOR</p>
+            <h1 class="titulo-hero">LA HISTORIA SE VISTE.</h1>
+            <p class="descripcion-hero">
+              Selección exclusiva de indumentaria futbolística. Desde las
+              reliquias de los 90 hasta el diseño de elite actual. Siente el
+              césped en cada fibra.
+            </p>
 
-          <div class="botones-hero">
-            <a href="catalogo.html" class="boton-azul">VER COLECCIÓN &rarr;</a>
-            <a href="#" class="boton-oscuro">EXPLORAR RETRO</a>
-          </div>
-        </header>
-      </section>
-
-      <!-- BARRA DE ENVÍO -->
-      <div class="barra-envio">
-        <p>🚚 ENVÍO GRATIS EN TODAS LAS ÓRDENES SUPERIORES A $50</p>
-      </div>
-
-      <!-- FILTROS MÓVIL (Pills) -->
-      <div class="filtros-movil">
-        <button type="button" class="boton-pill active">TODAS</button>
-        <button type="button" class="boton-pill">ÉPOCA</button>
-        <button type="button" class="boton-pill">LIGA</button>
-        <button type="button" class="boton-pill">TALLE</button>
-      </div>
-
-      <!-- BARRA DE BÚSQUEDA -->
-      <section class="seccion-buscador">
-        <img src="./recursos/Icon_search.png" class="icono-buscador" />
-        <form action="#" class="buscador">
-          <label for="search">Buscar productos...</label>
-          <input type="search" id="search" name="search" placeholder="Buscar" />
-          <button type="submit">Buscar</button>
-        </form>
-      </section>
-
-      <!-- Filtros y productos -->
-      <section class="cuerpo-principal">
-        <!-- Filtros -->
-        <aside class="columna-filtros">
-          <div class="titulo-filtros">
-            <img src="./recursos/Icon_filter.png" />
-            <h2>FILTROS</h2>
-          </div>
-
-          <!-- Filtro por Época -->
-          <fieldset>
-            <legend>ÉPOCA</legend>
-            <div class="botones-filtro">
-              <button type="button" class="boton-filtro active">2024</button>
-              <button type="button" class="boton-filtro">Modernas</button>
-              <button type="button" class="boton-filtro">Retro 90s</button>
-              <button type="button" class="boton-filtro">Iconic 00s</button>
+            <div class="botones-hero">
+              <!-- Lleva al catálogo de esta misma página, sin depender de otro HTML. -->
+              <a href="#catalogo" class="boton-azul">VER COLECCIÓN &rarr;</a>
+              <!-- <a href="#" class="boton-oscuro">EXPLORAR RETRO</a> -->
             </div>
-          </fieldset>
-
-          <!-- Filtro por Liga -->
-          <fieldset>
-            <legend>LIGA</legend>
-            <ul>
-              <li>
-                <input
-                  type="checkbox"
-                  id="premier"
-                  name="liga"
-                  value="premier"
-                />
-                <label for="premier">Premier League</label>
-              </li>
-              <li>
-                <input
-                  type="checkbox"
-                  id="laliga"
-                  name="liga"
-                  value="laliga"
-                  checked
-                />
-                <label for="laliga">La Liga</label>
-              </li>
-              <li>
-                <input type="checkbox" id="seriea" name="liga" value="seriea" />
-                <label for="seriea">Serie A</label>
-              </li>
-              <li>
-                <input
-                  type="checkbox"
-                  id="selecciones"
-                  name="liga"
-                  value="selecciones"
-                />
-                <label for="selecciones">Selecciones</label>
-              </li>
-            </ul>
-          </fieldset>
-
-          <!-- Filtro por Talle -->
-          <fieldset>
-            <legend>TALLE</legend>
-            <div class="botones-filtro">
-              <button type="button" class="boton-filtro">S</button>
-              <button
-                type="button"
-                class="boton-filtro boton-filtro-azul active"
-              >
-                M
-              </button>
-              <button type="button" class="boton-filtro">L</button>
-              <button type="button" class="boton-filtro">XL</button>
-            </div>
-          </fieldset>
-        </aside>
-
-        <!-- PRODUCTOS -->
-        <section class="columna-productos">
-          <header class="encabezado-productos">
-            <h2>KITS DESTACADOS</h2>
-            <p>Mostrando 24 de 156 productos</p>
           </header>
-
-          <div id="contenedor-tarjetas" class="contenedor-tarjetas">
-            <!-- Producto 1 -->
-            <article class="tarjeta-producto">
-              <span class="etiqueta">NUEVO</span>
-              <!-- Aca va la imagen de la camiseta de Real Madrid -->
-              <img
-                src="./recursos/real_madrid_2024.png"
-                alt="Camiseta Real Madrid Home 2024"
-              />
-              <div class="nombre-precio">
-                <h3>Real Madrid Home 2024</h3>
-                <data value="89.99" class="precio">$89.99</data>
-              </div>
-              <p class="descripcion-producto">
-                Official Player Issue - Authentic Kit
-              </p>
-              <div class="tags-producto">
-                <span>LA LIGA</span>
-                <span>2024 ERA</span>
-              </div>
-            </article>
-
-            <!-- Producto 2 -->
-            <article class="tarjeta-producto">
-              <span class="etiqueta etiqueta-azul">ICONIC RETRO</span>
-              <!-- Aca va la imagen de la camiseta de AC Milan -->
-              <img
-                src="./recursos/milan_95-96.png"
-                alt="Camiseta AC Milan 95/96 Retro"
-              />
-              <div class="nombre-precio">
-                <h3>AC Milan 95/96 Retro</h3>
-                <data value="120.00" class="precio">$120.00</data>
-              </div>
-              <p class="descripcion-producto">
-                Replica Premium - Limited Stock
-              </p>
-              <div class="tags-producto">
-                <span>SERIE A</span>
-                <span>90S ERA</span>
-              </div>
-            </article>
-
-            <!-- Producto 3 -->
-            <article class="tarjeta-producto">
-              <span class="etiqueta">TOP SELLER</span>
-              <!-- Aca va la imagen de la camiseta de Brasil -->
-              <img
-                src="./recursos/brasil_2024_away_kit.png"
-                alt="Camiseta Brasil 2024 Away Kit"
-              />
-              <div class="nombre-precio">
-                <h3>Brasil 2024 Away Kit</h3>
-                <data value="95.00" class="precio">$95.00</data>
-              </div>
-              <p class="descripcion-producto">Official Match Day Jersey</p>
-              <div class="tags-producto">
-                <span>NACIONAL</span>
-                <span>2024 ERA</span>
-              </div>
-            </article>
-          </div>
         </section>
-      </section>
-    </div><!-- Fin vista-inicio -->
 
-    <!-- VISTA DETALLE (SPA) -->
-    <div id="vista-detalle" style="display: none;">
-      <div class="contenedor-volver">
-        <a href="#inicio" class="boton-volver">&larr; Volver al catálogo</a>
-      </div>
-
-      <section class="contenedor-producto" aria-labelledby="jersey-title">
-        <!-- Columna Izquierda: Galería de imágenes (Carrusel) -->
-        <div class="columna-izquierda">
-          <div class="galeria-imagen-principal">
-            <button class="flecha-galeria flecha-izquierda" aria-label="Imagen anterior" id="btn-flecha-izq">&lt;</button>
-            <img id="main-product-img" src="" alt="" />
-            <button class="flecha-galeria flecha-derecha" aria-label="Imagen siguiente" id="btn-flecha-der">&gt;</button>
-            <!-- Paginación de puntos para móvil -->
-            <div class="galeria-puntos" id="galeria-puntos-container"></div>
-          </div>
-          <!-- Miniaturas del carrusel -->
-          <div class="galeria-miniaturas" id="contenedor-miniaturas"></div>
+        <!-- BARRA DE ENVÍO -->
+        <div class="barra-envio">
+          <p>🚚 ENVÍO GRATIS EN TODAS LAS ÓRDENES SUPERIORES A $50</p>
         </div>
 
-        <!-- Columna Derecha: Detalles de compra -->
-        <div class="columna-derecha">
-          <div class="contenedor-tags-detalle" id="detalle-categoria-container"></div>
-          
-          <h1 id="jersey-title" class="producto-titulo"></h1>
-          
-          <div class="producto-precio-info">
-            <span class="producto-precio" id="detalle-precio"></span>
-            <span class="producto-coleccion" id="detalle-coleccion"></span>
-          </div>
-
-          <p class="producto-descripcion" id="detalle-descripcion"></p>
-
-          <!-- Selector de Talles -->
-          <fieldset class="seccion-talles">
-            <legend class="oculto">Selección de talle</legend>
-            <div class="talle-header">
-              <span class="talle-titulo">TALLE</span>
-              <a href="#" class="guia-tallas">Guía de tallas</a>
-            </div>
-            <div class="talle-opciones">
-              <button type="button" class="boton-talle talle-alerta" aria-label="Talle S - Pocas unidades">S</button>
-              <button type="button" class="boton-talle active" aria-label="Talle M - Seleccionado" aria-current="true">M</button>
-              <button type="button" class="boton-talle">L</button>
-              <button type="button" class="boton-talle">XL</button>
-            </div>
-          </fieldset>
-
-          <!-- Botones de Acción -->
-          <div class="contenedor-acciones">
-            <button type="button" class="boton-agregar-carrito">
-              <img src="./recursos/Icon_cart.png" alt="" aria-hidden="true" />
-              Añadir al Carrito
-            </button>
-            <button type="button" class="boton-comprar-ahora">
-              Comprar Ahora
-            </button>
-          </div>
-
-          <!-- Acordeón de Detalles -->
-          <div class="acordeon-detalles">
-            <!-- Móvil únicamente: Descripción -->
-            <details class="acordeon-item-descripcion" open>
-              <summary>Descripción</summary>
-              <div>
-                <p id="detalle-descripcion-movil"></p>
-              </div>
-            </details>
-
-            <details>
-              <summary>Detalles Técnicos</summary>
-              <div>
-                <p>Fabricada en 100% poliéster de alta resistencia con tecnología transpirable. Se recomienda lavado a mano con agua fría y del revés para preservar los estampados y el escudo bordado. No utilizar secadora ni planchar directamente sobre los detalles.</p>
-              </div>
-            </details>
-            <details>
-              <summary>Envíos</summary>
-              <div>
-                <p>Realizamos envíos nacionales a través de correo prioritario. El tiempo estimado de entrega es de 3 a 5 días hábiles. Tienes 30 días corridos para solicitar un cambio sin costo adicional.</p>
-              </div>
-            </details>
-            <details class="acordeon-item-garantia">
-              <summary>Garantía de Autenticidad</summary>
-              <div>
-                <p>En 90 Minutos curamos exhaustivamente cada prenda. Esta camiseta ha sido verificada en detalle por expertos para asegurar su fidelidad con la época, calidad y etiquetas originales.</p>
-              </div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <!-- Productos Recomendados -->
-      <section class="relacionados-seccion" aria-labelledby="related-title">
-        <div class="relacionados-header">
-          <div class="relacionados-titulo-grupo">
-            <h2 id="related-title">
-              <span class="texto-desktop">También te puede interesar</span>
-              <span class="texto-movil">COMPLETA EL LOOK</span>
-            </h2>
-            <p>Completa tu colección con estos clásicos</p>
-          </div>
-          <a href="#inicio" class="relacionados-ver-todos">Ver todos &rarr;</a>
+        <!-- FILTROS MÓVIL (Pills) -->
+        <div class="filtros-movil">
+          <button type="button" class="boton-pill active" data-reset-filters>
+            TODAS
+          </button>
+          <button type="button" class="boton-pill">ÉPOCA</button>
+          <button type="button" class="boton-pill">LIGA</button>
+          <button type="button" class="boton-pill">TALLE</button>
         </div>
 
-        <div class="relacionados-grid" id="contenedor-relacionados"></div>
-      </section>
-
-      <!-- Barra de acciones fija para móviles -->
-      <div class="barra-acciones-movil">
-        <button type="button" class="boton-favorito-movil" aria-label="Añadir a favoritos">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-        </button>
-        <button type="button" class="boton-agregar-carrito-movil">
-          Añadir al Carrito
-        </button>
-      </div>
-    </div><!-- Fin vista-detalle -->
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <div>
-        <!-- Logo y descripción -->
-        <section>
-          <h3>90 minutos</h3>
-          <p>
-            Rescatando la historia del fútbol, una reliquia a la vez. Desde el
-            túnel hasta tu colección.
-          </p>
-        </section>
-
-        <!-- Enlaces de Soporte -->
-        <section>
-          <h3 class="titulo-columna">SOPORTE</h3>
-          <ul>
-            <li><a href="#">Privacidad</a></li>
-            <li><a href="#">Términos de Servicio</a></li>
-            <li><a href="#">Envíos</a></li>
-            <li><a href="#">Devoluciones</a></li>
-          </ul>
-        </section>
-
-        <!-- Enlaces de Producto -->
-        <section>
-          <h3 class="titulo-columna">PRODUCTO</h3>
-          <ul>
-            <li><a href="#">Modernas</a></li>
-            <li><a href="#">Clásicas Retro</a></li>
-            <li><a href="#">Ediciones Limitadas</a></li>
-            <li><a href="#">Accesorios</a></li>
-          </ul>
-        </section>
-
-        <!-- Newsletter -->
-        <section>
-          <h3 class="titulo-columna">NEWSLETTER</h3>
-          <p>Suscríbete para lanzamientos exclusivos.</p>
-          <form action="./" method="post">
-            <label for="newsletter-email" class="oculto"
-              >Correo electrónico para newsletter</label
-            >
+        <!-- BARRA DE BÚSQUEDA -->
+        <section class="seccion-buscador">
+          <form action="#" class="buscador" id="formulario-busqueda">
+            <label for="search">Buscar productos...</label>
             <input
-              type="email"
-              id="newsletter-email"
-              name="email"
-              placeholder="Email"
-              required
+              type="search"
+              id="search"
+              name="search"
+              placeholder="Buscar"
             />
-            <button type="submit">UNIRSE</button>
+            <button type="submit">Buscar</button>
           </form>
         </section>
-      </div>
 
-      <!-- Copyright -->
-      <div>
-        <p>&copy; 2026 90 MINUTOS.</p>
-      </div>
+        <!-- Filtros y productos -->
+        <!-- Destino del enlace VER COLECCIÓN y de la ruta #catalogo. -->
+        <section class="catalogo cuerpo-principal" id="catalogo">
+          <!-- Filtros -->
+          <aside class="catalogo__filtros columna-filtros">
+            <div class="titulo-filtros">
+              <img src="./recursos/Icon_filter.png" />
+              <h2>FILTROS</h2>
+            </div>
 
-      <!-- Pie de página simplificado para móviles -->
-      <div class="footer-movil">
-        <h3>90 minutos</h3>
-        <div class="footer-movil-links">
-          <a href="#">NEWSLETTER</a>
-          <a href="#">SOPORTE</a>
-          <a href="#">LEGAL</a>
+            <!-- Filtro por año -->
+            <fieldset>
+              <legend>AÑO</legend>
+              <div class="botones-filtro">
+                <button type="button" class="boton-filtro" data-anio="2023">
+                  2023
+                </button>
+                <button type="button" class="boton-filtro" data-anio="2024">
+                  2024
+                </button>
+                <button type="button" class="boton-filtro" data-anio="2025">
+                  2025
+                </button>
+              </div>
+            </fieldset>
+
+            <!-- Filtro por Liga -->
+            <fieldset>
+              <legend>LIGA</legend>
+              <ul>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="serie-a"
+                    name="liga"
+                    value="serie_a"
+                  />
+                  <label for="serie-a">Serie A</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="premier"
+                    name="liga"
+                    value="premier"
+                  />
+                  <label for="premier">Premier League</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="argentina"
+                    name="liga"
+                    value="argentina"
+                  />
+                  <label for="argentina">Liga Argentina</label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="selecciones"
+                    name="liga"
+                    value="selecciones"
+                  />
+                  <label for="selecciones">Selecciones</label>
+                </li>
+              </ul>
+            </fieldset>
+
+            <!-- Filtro por Talle -->
+            <fieldset>
+              <legend>TALLE</legend>
+              <div class="botones-filtro">
+                <button type="button" class="boton-filtro" data-talle="S">
+                  S
+                </button>
+                <button
+                  type="button"
+                  class="boton-filtro boton-filtro-azul"
+                  data-talle="M"
+                >
+                  M
+                </button>
+                <button type="button" class="boton-filtro" data-talle="L">
+                  L
+                </button>
+                <button type="button" class="boton-filtro" data-talle="XL">
+                  XL
+                </button>
+              </div>
+            </fieldset>
+          </aside>
+
+          <!-- PRODUCTOS -->
+          <section class="catalogo__productos columna-productos">
+            <header class="encabezado-productos">
+              <h2>KITS DESTACADOS</h2>
+              <p id="contador-resultados" aria-live="polite">
+                Mostrando productos
+              </p>
+            </header>
+
+            <!-- catalogo.js agrega las tarjetas cuando finaliza la carga de productos.json. -->
+            <div id="contenedor-tarjetas" class="contenedor-tarjetas">
+              <!-- Este mensaje se reemplaza por tarjetas reales al resolver fetch(). -->
+              <p class="mensaje-carga" role="status" aria-live="polite">
+                Cargando catálogo...
+              </p>
+            </div>
+          </section>
+        </section>
+      </div>
+      <!-- Fin vista-inicio -->
+
+      <!-- VISTA DETALLE (SPA) -->
+      <!-- Plantilla vacía: JavaScript la completa al elegir una tarjeta. -->
+      <div id="vista-detalle" style="display: none">
+        <div class="contenedor-volver">
+          <a href="#inicio" class="boton-volver">&larr; Volver al catálogo</a>
         </div>
-        <p>&copy; 2026 90 MINUTOS.</p>
+
+        <section
+          class="producto-detalle contenedor-producto"
+          aria-labelledby="jersey-title"
+        >
+          <!-- Columna Izquierda: Galería de imágenes (Carrusel) -->
+          <div class="producto-detalle__galeria columna-izquierda">
+            <!-- Flechas, puntos y miniaturas controlan esta misma imagen principal. -->
+            <div class="galeria-imagen-principal">
+              <button
+                class="flecha-galeria flecha-izquierda"
+                aria-label="Imagen anterior"
+                id="btn-flecha-izq"
+              >
+                &lt;
+              </button>
+              <img id="main-product-img" src="" alt="" />
+              <button
+                class="flecha-galeria flecha-derecha"
+                aria-label="Imagen siguiente"
+                id="btn-flecha-der"
+              >
+                &gt;
+              </button>
+              <!-- Paginación de puntos para móvil -->
+              <div class="galeria-puntos" id="galeria-puntos-container"></div>
+            </div>
+            <!-- Miniaturas del carrusel -->
+            <div class="galeria-miniaturas" id="contenedor-miniaturas"></div>
+          </div>
+
+          <!-- Columna Derecha: Detalles de compra -->
+          <!-- Nombre, precio, tags y descripción se actualizan desde el JSON. -->
+          <div class="producto-detalle__informacion columna-derecha">
+            <div
+              class="contenedor-tags-detalle"
+              id="detalle-categoria-container"
+            ></div>
+
+            <h1 id="jersey-title" class="producto-titulo"></h1>
+
+            <div class="producto-precio-info">
+              <span class="producto-precio" id="detalle-precio"></span>
+              <span class="producto-coleccion" id="detalle-coleccion"></span>
+            </div>
+
+            <p class="producto-descripcion" id="detalle-descripcion"></p>
+
+            <!-- Selector de Talles -->
+            <fieldset class="seccion-talles">
+              <legend class="oculto">Selección de talle</legend>
+              <div class="talle-header">
+                <span class="talle-titulo">TALLE</span>
+                <a href="#" class="guia-tallas">Guía de tallas</a>
+              </div>
+              <div class="talle-opciones">
+                <button
+                  type="button"
+                  class="boton-talle talle-alerta"
+                  aria-label="Talle S - Pocas unidades"
+                >
+                  S
+                </button>
+                <button
+                  type="button"
+                  class="boton-talle active"
+                  aria-label="Talle M - Seleccionado"
+                  aria-current="true"
+                >
+                  M
+                </button>
+                <button type="button" class="boton-talle">L</button>
+                <button type="button" class="boton-talle">XL</button>
+              </div>
+            </fieldset>
+
+            <!-- Botones de Acción -->
+            <div class="contenedor-acciones">
+              <button type="button" class="boton-agregar-carrito">
+                <img src="./recursos/Icon_cart.png" alt="" aria-hidden="true" />
+                Añadir al Carrito
+              </button>
+              <button type="button" class="boton-comprar-ahora">
+                Comprar Ahora
+              </button>
+            </div>
+            <!-- Mensaje accesible que confirma el producto agregado. -->
+            <p
+              id="mensaje-carrito"
+              class="mensaje-carrito"
+              role="status"
+              aria-live="polite"
+            ></p>
+
+            <!-- Acordeón de Detalles -->
+            <div class="acordeon-detalles">
+              <!-- Móvil únicamente: Descripción -->
+              <details class="acordeon-item-descripcion" open>
+                <summary>Descripción</summary>
+                <div>
+                  <p id="detalle-descripcion-movil"></p>
+                </div>
+              </details>
+
+              <details>
+                <summary>Detalles Técnicos</summary>
+                <div>
+                  <p>
+                    Fabricada en 100% poliéster de alta resistencia con
+                    tecnología transpirable. Se recomienda lavado a mano con
+                    agua fría y del revés para preservar los estampados y el
+                    escudo bordado. No utilizar secadora ni planchar
+                    directamente sobre los detalles.
+                  </p>
+                </div>
+              </details>
+              <details>
+                <summary>Envíos</summary>
+                <div>
+                  <p>
+                    Realizamos envíos nacionales a través de correo prioritario.
+                    El tiempo estimado de entrega es de 3 a 5 días hábiles.
+                    Tienes 30 días corridos para solicitar un cambio sin costo
+                    adicional.
+                  </p>
+                </div>
+              </details>
+              <details class="acordeon-item-garantia">
+                <summary>Garantía de Autenticidad</summary>
+                <div>
+                  <p>
+                    En 90 Minutos curamos exhaustivamente cada prenda. Esta
+                    camiseta ha sido verificada en detalle por expertos para
+                    asegurar su fidelidad con la época, calidad y etiquetas
+                    originales.
+                  </p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- Productos Recomendados -->
+        <section class="relacionados-seccion" aria-labelledby="related-title">
+          <div class="relacionados-header">
+            <div class="relacionados-titulo-grupo">
+              <h2 id="related-title">
+                <span class="texto-desktop">También te puede interesar</span>
+                <span class="texto-movil">COMPLETA EL LOOK</span>
+              </h2>
+              <p>Completa tu colección con estos clásicos</p>
+            </div>
+            <a href="#inicio" class="relacionados-ver-todos"
+              >Ver todos &rarr;</a
+            >
+          </div>
+
+          <!-- Se completan con todos los productos, menos el que se está viendo. -->
+          <div class="relacionados-grid" id="contenedor-relacionados"></div>
+        </section>
+
+        <!-- Barra de acciones fija para móviles -->
+        <div class="barra-acciones-movil">
+          <button
+            type="button"
+            class="boton-favorito-movil"
+            aria-label="Añadir a favoritos"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-heart"
+            >
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+              ></path>
+            </svg>
+          </button>
+          <button type="button" class="boton-agregar-carrito-movil">
+            Añadir al Carrito
+          </button>
+        </div>
       </div>
-    </footer>
-    <script src="js/productos.js"></script>
-    <script src="js/catalogo.js"></script>
-    <script src="js/spa.js"></script>
+      <!-- Fin vista-detalle -->
+    </main>
+
+    <!-- Carrito modal: se llena dinámicamente desde el módulo carrito.js. -->
+    <dialog
+      class="carrito"
+      id="dialogo-carrito"
+      aria-labelledby="titulo-carrito"
+    >
+      <div class="carrito__encabezado">
+        <h2 id="titulo-carrito">Tu carrito</h2>
+        <button type="button" id="cerrar-carrito" aria-label="Cerrar carrito">
+          ×
+        </button>
+      </div>
+      <div class="carrito__lista" id="lista-carrito"></div>
+      <div class="carrito__resumen">
+        <p>Total <strong id="total-carrito">$0.00</strong></p>
+        <button type="button" id="finalizar-compra">Finalizar compra</button>
+      </div>
+    </dialog>
+
+    <!-- Footer compartido cargado desde componentes/footer.html. -->
+    <div id="footer-container"></div>
+    <!-- Módulo principal: carga el JSON e inicia catálogo y vista de detalle. -->
+    <script type="module" src="js/app.js"></script>
     <script>
+      // En celulares, este botón muestra u oculta los enlaces de navegación.
       document.addEventListener('DOMContentLoaded', () => {
         const menuBtn = document.querySelector('.hamburger-menu');
         const menuList = document.querySelector('header nav ul');

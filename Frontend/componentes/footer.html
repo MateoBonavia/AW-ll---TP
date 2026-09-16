@@ -1,0 +1,59 @@
+<!-- Footer compartido: se carga en cada página desde js/componentes.js. -->
+<footer>
+  <div>
+    <!-- Presenta la identidad y la descripción breve del sitio. -->
+    <section>
+      <h3>90 minutos</h3>
+      <p>
+        Rescatando la historia del fútbol, una reliquia a la vez. Desde el
+        túnel hasta tu colección.
+      </p>
+    </section>
+
+    <section>
+      <h3 class="titulo-columna">SOPORTE</h3>
+      <ul>
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Términos de Servicio</a></li>
+        <li><a href="#">Envíos</a></li>
+        <li><a href="#">Devoluciones</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 class="titulo-columna">PRODUCTO</h3>
+      <ul>
+        <li><a href="#">Modernas</a></li>
+        <li><a href="#">Clásicas Retro</a></li>
+        <li><a href="#">Ediciones Limitadas</a></li>
+        <li><a href="#">Accesorios</a></li>
+      </ul>
+    </section>
+
+    <!-- El formulario se conecta desde js/formularios.js luego de cargar el footer. -->
+    <section>
+      <h3 class="titulo-columna">NEWSLETTER</h3>
+      <p>Suscríbete para lanzamientos exclusivos.</p>
+      <form action="./" method="post">
+        <label for="newsletter-email" class="oculto">Correo electrónico para newsletter</label>
+        <input type="email" id="newsletter-email" name="email" placeholder="Email" required />
+        <button type="submit">UNIRSE</button>
+      </form>
+    </section>
+  </div>
+
+  <div>
+    <p>&copy; 2026 90 MINUTOS.</p>
+  </div>
+
+  <!-- Versión resumida que se muestra en pantallas pequeñas. -->
+  <div class="footer-movil">
+    <h3>90 minutos</h3>
+    <div class="footer-movil-links">
+      <a href="#">NEWSLETTER</a>
+      <a href="#">SOPORTE</a>
+      <a href="#">LEGAL</a>
+    </div>
+    <p>&copy; 2026 90 MINUTOS.</p>
+  </div>
+</footer>

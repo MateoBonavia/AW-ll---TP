@@ -4,7 +4,8 @@
 
 /* 1. SECCIÓN HERO (Banner Principal) */
 .hero-inicio {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
     url('../recursos/background-banner.png');
   background-size: cover;
   background-position: center;

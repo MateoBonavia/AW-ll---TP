@@ -8,30 +8,8 @@
     <link rel="stylesheet" href="css/contacto.css" />
   </head>
   <body>
-    <header>
-      <nav aria-label="Navegación principal">
-        <!-- Menú Hamburguesa para Móvil -->
-        <button class="hamburger-menu" aria-label="Abrir menú">☰</button>
-
-        <!-- Logo de la marca -->
-        <div>
-          <a href="index.html">90 minutos</a>
-        </div>
-
-        <!-- Menú de navegación -->
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="preguntas_frecuentes.html">Preguntas Frecuentes</a></li>
-          <li><a href="contacto.html" aria-current="page">Contacto</a></li>
-        </ul>
-
-        <!-- Acceso a cuenta y carrito -->
-        <div>
-          <a href="#"><img src="./recursos/Icon_profile.png" alt="Perfil" /><span>Mi Cuenta</span></a>
-          <a href="#"><img src="./recursos/Icon_cart.png" alt="Carrito" /><span>Carrito (0)</span></a>
-        </div>
-      </nav>
-    </header>
+    <!-- Header compartido cargado desde componentes/header.html. -->
+    <div id="header-container"></div>
 
     <main>
       <section aria-labelledby="contact-title" class="hero-contacto">
@@ -44,10 +22,13 @@
 
       <section class="contenedor-contacto">
         <!-- Formulario -->
-        <section aria-labelledby="form-title" class="columna-formulario">
+        <section
+          aria-labelledby="form-title"
+          class="contacto__formulario-columna columna-formulario"
+        >
           <h2 id="form-title" class="oculto">Formulario de contacto</h2>
-          <form action="#" method="POST" class="formulario">
-            <div class="campo-formulario">
+          <form action="#" method="POST" class="contacto-formulario formulario">
+            <div class="contacto-formulario__campo campo-formulario">
               <label for="full-name">NOMBRE COMPLETO</label>
               <input
                 type="text"
@@ -58,7 +39,7 @@
               />
             </div>
 
-            <div class="campo-formulario">
+            <div class="contacto-formulario__campo campo-formulario">
               <label for="email">CORREO ELECTRÓNICO</label>
               <input
                 type="email"
@@ -69,7 +50,7 @@
               />
             </div>
 
-            <div class="campo-formulario">
+            <div class="contacto-formulario__campo campo-formulario">
               <label for="message">TU MENSAJE</label>
               <textarea
                 id="message"
@@ -101,8 +82,27 @@
                 <h3>SHOWROOM</h3>
                 <span>VISITÁ EL TEMPLO</span>
               </div>
-              <button type="button" class="boton-pin-mapa" aria-label="Ver mapa">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <button
+                type="button"
+                class="boton-pin-mapa"
+                aria-label="Ver mapa"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-map-pin"
+                >
+                  <path
+                    d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
               </button>
             </div>
 
@@ -145,78 +145,35 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer>
-      <div>
-        <section>
-          <h3>90 minutos</h3>
-          <p>
-            Rescatando la historia del fútbol, una reliquia a la vez. Desde el
-            túnel hasta tu colección.
-          </p>
-        </section>
-
-        <section>
-          <h3 class="titulo-columna">SOPORTE</h3>
-          <ul>
-            <li><a href="#">Privacidad</a></li>
-            <li><a href="#">Términos de Servicio</a></li>
-            <li><a href="#">Envíos</a></li>
-            <li><a href="#">Devoluciones</a></li>
-          </ul>
-        </section>
-
-        <section>
-          <h3 class="titulo-columna">PRODUCTO</h3>
-          <ul>
-            <li><a href="#">Modernas</a></li>
-            <li><a href="#">Clásicas Retro</a></li>
-            <li><a href="#">Ediciones Limitadas</a></li>
-            <li><a href="#">Accesorios</a></li>
-          </ul>
-        </section>
-
-        <!-- Newsletter -->
-        <section>
-          <h3 class="titulo-columna">NEWSLETTER</h3>
-          <p>Suscríbete para lanzamientos exclusivos.</p>
-          <form action="./" method="post">
-            <label for="newsletter-email" class="oculto"
-              >Correo electrónico para newsletter</label
-            >
-            <input
-              type="email"
-              id="newsletter-email"
-              name="email"
-              placeholder="Email"
-              required
-            />
-            <button type="submit">UNIRSE</button>
-          </form>
-        </section>
-      </div>
-
-      <!-- Copyright -->
-      <div>
-        <p>&copy; 2026 90 MINUTOS.</p>
-      </div>
-
-      <!-- Pie de página simplificado para móviles -->
-      <div class="footer-movil">
-        <h3>90 minutos</h3>
-        <div class="footer-movil-links">
-          <a href="#">NEWSLETTER</a>
-          <a href="#">SOPORTE</a>
-          <a href="#">LEGAL</a>
-        </div>
-        <p>&copy; 2026 90 MINUTOS.</p>
-      </div>
-    </footer>
+    <!-- Footer compartido cargado desde componentes/footer.html. -->
+    <div id="footer-container"></div>
 
     <!-- Botón flotante de soporte para móvil -->
     <a href="#" class="boton-flotante-soporte" aria-label="Soporte por chat">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-message-circle"
+      >
+        <path
+          d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+        ></path>
+      </svg>
     </a>
+    <script type="module">
+      import { cargarFooter, cargarHeader } from "./js/componentes.js";
+      import { inicializarFormularios } from "./js/formularios.js";
+
+      // Espera ambos componentes para que el newsletter ya exista al conectarlo.
+      await Promise.all([cargarHeader(), cargarFooter()]);
+      inicializarFormularios();
+    </script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const menuBtn = document.querySelector('.hamburger-menu');
