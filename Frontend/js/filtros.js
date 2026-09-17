@@ -2,8 +2,8 @@
 
 /**
  * Conecta los controles del catálogo con el renderizado de productos filtrados.
- * El JSON conserva la clave "año", pero el HTML y las variables usan ASCII.
- * @param {Array} productos Lista completa cargada desde el JSON.
+ * Los productos normalizados conservan la clave "año", pero el HTML y las variables usan ASCII.
+ * @param {Array} productos Lista completa cargada desde la API.
  * @param {Function} actualizarCatalogo Función que muestra el resultado filtrado.
  */
 export function inicializarFiltros(productos, actualizarCatalogo) {

@@ -8,7 +8,7 @@ import { inicializarCarrito } from "./carrito.js";
 import { cargarFooter, cargarHeader } from "./componentes.js";
 import { inicializarFormularios } from "./formularios.js";
 
-// Punto de entrada: espera los datos antes de activar las vistas del sitio.
+// Punto de entrada: espera la API antes de activar las vistas del sitio.
 async function iniciarAplicacion() {
   const contenedor = document.getElementById("contenedor-tarjetas");
 
@@ -17,7 +17,7 @@ async function iniciarAplicacion() {
     await Promise.all([cargarHeader(), cargarFooter()]);
     inicializarFormularios();
 
-    // await pausa solo esta función hasta que el archivo JSON esté disponible.
+    // await pausa solo esta función hasta que la API responda.
     const productos = await cargarProductos();
 
     // Catálogo y detalle reciben la misma lista para mostrar datos coherentes.
