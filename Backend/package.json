@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch index.mjs"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
   "packageManager": "pnpm@12.4.2",
   "type": "module",
   "dependencies": {
+    "cors": "^2.8.6",
     "express": "5.2.1"
   }
 }
