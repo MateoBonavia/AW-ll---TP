@@ -1,21 +1,49 @@
 "use strict";
 
-/**
- * Conecta los controles del catálogo con el renderizado de productos filtrados.
- * Los productos normalizados conservan la clave "año", pero el HTML y las variables usan ASCII.
- * @param {Array} productos Lista completa cargada desde la API.
- * @param {Function} actualizarCatalogo Función que muestra el resultado filtrado.
- */
-export function inicializarFiltros(productos, actualizarCatalogo) {
+function renderizarLigas(contenedor, ligas) {
+  contenedor.innerHTML = "";
+
+  ligas.forEach((liga) => {
+    const item = document.createElement("li");
+    const casilla = document.createElement("input");
+    const etiqueta = document.createElement("label");
+
+    // Cada casilla identifica su etiqueta para que el clic active el checkbox.
+    const idCasilla = `liga-${liga.id}`;
+    casilla.type = "checkbox";
+    casilla.id = idCasilla;
+    casilla.name = "liga";
+    casilla.value = liga.id;
+
+    etiqueta.setAttribute("for", idCasilla);
+    etiqueta.textContent = liga.nombre;
+
+    item.appendChild(casilla);
+    item.appendChild(etiqueta);
+    contenedor.appendChild(item);
+  });
+}
+
+export function inicializarFiltros(productos, ligas, actualizarCatalogo) {
   const formularioBusqueda = document.getElementById("formulario-busqueda");
   const campoBusqueda = document.getElementById("search");
   const botonesAnio = document.querySelectorAll("[data-anio]");
   const botonesTalle = document.querySelectorAll("[data-talle]");
-  const casillasLiga = document.querySelectorAll("input[name='liga']");
+  const contenedorLigas = document.getElementById("lista-ligas");
   const botonTodas = document.querySelector("[data-reset-filters]");
 
   let anioSeleccionado = "";
   let talleSeleccionado = "";
+
+  // Las casillas se crean antes de conectar los eventos para poder consultarlas.
+  if (contenedorLigas) {
+    renderizarLigas(contenedorLigas, ligas);
+  }
+
+  const casillasLiga = document.querySelectorAll("input[name='liga']");
+
+  // Permite mostrar y buscar por nombre aunque el producto guarde solo el id.
+  const nombresDeLigas = new Map(ligas.map((liga) => [liga.id, liga.nombre]));
 
   function actualizarBotones(botones, valorSeleccionado) {
     botones.forEach((boton) => {
@@ -26,21 +54,27 @@ export function inicializarFiltros(productos, actualizarCatalogo) {
 
   function aplicarFiltros() {
     const textoBuscado = campoBusqueda.value.trim().toLowerCase();
-    const ligasSeleccionadas = Array.from(casillasLiga)
-      .filter((casilla) => casilla.checked)
-      .map((casilla) => casilla.value);
+    const ligasSeleccionadas = Array.from(casillasLiga).filter(
+      (casilla) => casilla.checked
+    );
 
     const productosFiltrados = productos.filter((producto) => {
       // La notación entre corchetes permite leer una clave que contiene ñ.
       const anioProducto = producto["año"];
+      const nombreLiga = nombresDeLigas.get(String(producto.liga_id)) ?? "";
+
       const coincideAnio = !anioSeleccionado || anioProducto === anioSeleccionado;
       const coincideTalle = !talleSeleccionado || producto.talles.includes(talleSeleccionado);
-      const coincideLiga = ligasSeleccionadas.length === 0 || ligasSeleccionadas.includes(producto.liga);
+      const coincideLiga =
+        ligasSeleccionadas.length === 0 ||
+        ligasSeleccionadas.some(
+          (casilla) => casilla.value === String(producto.liga_id)
+        );
       const textoDelProducto = [
         producto.nombre,
         producto.descripcion,
         producto.etiqueta,
-        producto.liga,
+        nombreLiga,
         anioProducto,
         ...producto.tags
       ].join(" ").toLowerCase();

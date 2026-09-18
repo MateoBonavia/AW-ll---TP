@@ -107,10 +107,6 @@ function cerrarCarrito() {
   }
 }
 
-/**
- * Prepara el carrito y devuelve las acciones que usará el detalle del producto.
- * @returns {{agregarProducto: Function, abrirCarrito: Function}}
- */
 export function inicializarCarrito() {
   const enlaceCarrito = document.getElementById('abrir-carrito');
   const botonCerrar = document.getElementById('cerrar-carrito');

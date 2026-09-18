@@ -92,44 +92,8 @@
             <!-- Filtro por Liga -->
             <fieldset>
               <legend>LIGA</legend>
-              <ul>
-                <li>
-                  <input
-                    type="checkbox"
-                    id="serie-a"
-                    name="liga"
-                    value="serie_a"
-                  />
-                  <label for="serie-a">Serie A</label>
-                </li>
-                <li>
-                  <input
-                    type="checkbox"
-                    id="premier"
-                    name="liga"
-                    value="premier"
-                  />
-                  <label for="premier">Premier League</label>
-                </li>
-                <li>
-                  <input
-                    type="checkbox"
-                    id="argentina"
-                    name="liga"
-                    value="argentina"
-                  />
-                  <label for="argentina">Liga Argentina</label>
-                </li>
-                <li>
-                  <input
-                    type="checkbox"
-                    id="selecciones"
-                    name="liga"
-                    value="selecciones"
-                  />
-                  <label for="selecciones">Selecciones</label>
-                </li>
-              </ul>
+              <!-- filtros.js agrega las ligas cuando termina la carga desde la API. -->
+              <ul id="lista-ligas"></ul>
             </fieldset>
 
             <!-- Filtro por Talle -->

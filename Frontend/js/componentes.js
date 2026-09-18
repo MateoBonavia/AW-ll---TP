@@ -1,9 +1,5 @@
 "use strict";
 
-/**
- * Carga el header compartido y activa sus interacciones.
- * @returns {Promise<void>}
- */
 export async function cargarHeader() {
   const contenedor = document.getElementById("header-container");
 
@@ -20,10 +16,6 @@ export async function cargarHeader() {
   inicializarMenuMovil();
 }
 
-/**
- * Carga el footer compartido en la página actual.
- * @returns {Promise<void>}
- */
 export async function cargarFooter() {
   const contenedor = document.getElementById("footer-container");
 

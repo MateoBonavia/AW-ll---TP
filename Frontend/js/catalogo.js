@@ -1,9 +1,5 @@
 "use strict";
 
-/**
- * Renderiza las tarjetas del catálogo a partir de los productos cargados.
- * @param {Array} productos Productos disponibles.
- */
 export function renderizarCatalogo(productos, totalProductos) {
   const contenedor = document.getElementById("contenedor-tarjetas");
   const contador = document.getElementById("contador-resultados");
@@ -66,10 +62,6 @@ export function renderizarCatalogo(productos, totalProductos) {
   });
 }
 
-/**
- * Muestra el catálogo completo apenas termina de cargarse el JSON.
- * @param {Array} productos Productos disponibles.
- */
 export function inicializarCatalogo(productos) {
   renderizarCatalogo(productos, productos.length);
 }

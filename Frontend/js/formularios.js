@@ -137,10 +137,6 @@ function inicializarBuscadorFaq() {
   });
 }
 
-/**
- * Conecta los formularios después de que header y footer ya fueron cargados.
- * Cada página activa solamente las funciones cuyos elementos están presentes.
- */
 export function inicializarFormularios() {
   inicializarFormularioContacto();
   inicializarNewsletters();

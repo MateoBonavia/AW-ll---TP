@@ -1,6 +1,7 @@
 "use strict";
 
 import { cargarProductos } from "./productos.js";
+import { cargarLigas } from "./ligas.js";
 import { inicializarCatalogo, renderizarCatalogo } from "./catalogo.js";
 import { inicializarFiltros } from "./filtros.js";
 import { inicializarSpa } from "./spa.js";
@@ -18,13 +19,13 @@ async function iniciarAplicacion() {
     inicializarFormularios();
 
     // await pausa solo esta función hasta que la API responda.
-    const productos = await cargarProductos();
+    const [productos, ligas] = await Promise.all([cargarProductos(), cargarLigas()]);
 
     // Catálogo y detalle reciben la misma lista para mostrar datos coherentes.
     // El carrito se prepara una vez y sus acciones se pasan al detalle SPA.
     const carrito = inicializarCarrito();
     inicializarCatalogo(productos);
-    inicializarFiltros(productos, renderizarCatalogo);
+    inicializarFiltros(productos, ligas, renderizarCatalogo);
     inicializarSpa(productos, carrito);
   } catch (error) {
     // Si falla la carga, se muestra un mensaje en vez de dejar un área vacía.

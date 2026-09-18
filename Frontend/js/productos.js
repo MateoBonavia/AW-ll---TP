@@ -3,11 +3,6 @@
 // Endpoint de la API que entrega el catálogo de productos.
 const URL_PRODUCTOS = "https://6aab1be4ea0e22daa6dbcb90.mockapi.io/api/productos";
 
-/**
- * Convierte un texto separado por comas en una lista de valores.
- * @param {string|Array} valor Dato recibido desde la API.
- * @returns {Array<string>} Valores normalizados.
- */
 function normalizarLista(valor) {
   if (Array.isArray(valor)) return valor;
 
@@ -21,11 +16,6 @@ function normalizarLista(valor) {
   return [];
 }
 
-/**
- * Adapta el producto que devuelve la API al formato que usa la aplicación.
- * @param {Object} producto Producto recibido desde la API.
- * @returns {Object} Producto con imagenes, año, tags y talles normalizados.
- */
 function normalizarProducto(producto) {
   return {
     ...producto,
@@ -40,10 +30,6 @@ function normalizarProducto(producto) {
   };
 }
 
-/**
- * Carga el catálogo desde la API de productos.
- * @returns {Promise<Array>} Productos disponibles.
- */
 export async function cargarProductos() {
   const respuesta = await fetch(URL_PRODUCTOS);
 
