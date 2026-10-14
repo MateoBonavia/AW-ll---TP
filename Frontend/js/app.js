@@ -8,6 +8,7 @@ import { inicializarSpa } from "./spa.js";
 import { inicializarCarrito } from "./carrito.js";
 import { cargarFooter, cargarHeader } from "./componentes.js";
 import { inicializarFormularios } from "./formularios.js";
+import { inicializarAccionesCatalogo } from "./admin.js";
 
 // Punto de entrada: espera la API antes de activar las vistas del sitio.
 async function iniciarAplicacion() {
@@ -25,6 +26,7 @@ async function iniciarAplicacion() {
     // El carrito se prepara una vez y sus acciones se pasan al detalle SPA.
     const carrito = inicializarCarrito();
     inicializarCatalogo(productos);
+    inicializarAccionesCatalogo(productos);
     inicializarFiltros(productos, ligas, renderizarCatalogo);
     inicializarSpa(productos, carrito);
   } catch (error) {

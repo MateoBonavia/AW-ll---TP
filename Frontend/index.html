@@ -122,6 +122,13 @@
 
           <!-- PRODUCTOS -->
           <section class="catalogo__productos columna-productos">
+            <!-- Acción de administración del catálogo, sobre el encabezado de productos. -->
+            <div class="barra-acciones-catalogo">
+              <button type="button" id="crear-producto" class="boton-azul boton-crear-producto">
+                Crear producto
+              </button>
+            </div>
+
             <header class="encabezado-productos">
               <h2>KITS DESTACADOS</h2>
               <p id="contador-resultados" aria-live="polite">
@@ -356,6 +363,135 @@
         <p>Total <strong id="total-carrito">$0.00</strong></p>
         <button type="button" id="finalizar-compra">Finalizar compra</button>
       </div>
+    </dialog>
+
+    <!-- Modal de confirmación de eliminación: lo abre admin.js desde el catálogo. -->
+    <dialog
+      class="dialogo-admin"
+      id="dialogo-confirmar-eliminacion"
+      aria-labelledby="titulo-confirmar-eliminacion"
+    >
+      <div class="dialogo-admin__encabezado">
+        <h2 id="titulo-confirmar-eliminacion">Confirmar eliminación</h2>
+        <button type="button" data-cerrar="dialogo-confirmar-eliminacion" aria-label="Cerrar diálogo">
+          ×
+        </button>
+      </div>
+      <div class="dialogo-admin__cuerpo">
+        <p class="dialogo-admin__texto">
+          ¿Seguro que querés eliminar
+          <strong id="nombre-producto-eliminacion"></strong>? Esta acción no se
+          puede deshacer.
+        </p>
+      </div>
+      <div class="dialogo-admin__acciones">
+        <button type="button" class="dialogo-admin__boton" data-cerrar="dialogo-confirmar-eliminacion">
+          Cancelar
+        </button>
+        <button type="button" id="confirmar-eliminacion" class="dialogo-admin__boton dialogo-admin__boton--peligro">
+          Eliminar
+        </button>
+      </div>
+    </dialog>
+
+    <!-- Modal de edición: admin.js carga los datos actuales del producto en el formulario. -->
+    <dialog
+      class="dialogo-admin"
+      id="dialogo-editar-producto"
+      aria-labelledby="titulo-editar-producto"
+    >
+      <div class="dialogo-admin__encabezado">
+        <h2 id="titulo-editar-producto">Editar producto</h2>
+        <button type="button" data-cerrar="dialogo-editar-producto" aria-label="Cerrar diálogo">
+          ×
+        </button>
+      </div>
+      <form id="form-editar-producto" class="dialogo-admin__formulario">
+        <div class="dialogo-admin__cuerpo">
+          <div class="campo-formulario">
+            <label for="editar-nombre">NOMBRE</label>
+            <input type="text" id="editar-nombre" name="nombre" required />
+          </div>
+          <div class="campo-formulario">
+            <label for="editar-precio">PRECIO</label>
+            <input type="number" id="editar-precio" name="precio" min="0" step="0.01" required />
+          </div>
+          <div class="campo-formulario">
+            <label for="editar-descripcion">DESCRIPCIÓN</label>
+            <textarea id="editar-descripcion" name="descripcion" rows="4"></textarea>
+          </div>
+          <div class="campo-formulario">
+            <label for="editar-etiqueta">ETIQUETA</label>
+            <input type="text" id="editar-etiqueta" name="etiqueta" />
+          </div>
+          <div class="campo-formulario">
+            <label for="editar-anio">AÑO</label>
+            <input type="text" id="editar-anio" name="anio" />
+          </div>
+          <div class="campo-formulario">
+            <label for="editar-imagenes">IMÁGENES</label>
+            <input type="file" id="editar-imagenes" name="imagenes" accept="image/*" multiple />
+          </div>
+        </div>
+        <div class="dialogo-admin__acciones">
+          <button type="button" class="dialogo-admin__boton" data-cerrar="dialogo-editar-producto">
+            Cancelar
+          </button>
+          <button type="submit" class="dialogo-admin__boton dialogo-admin__boton--primario">
+            Guardar cambios
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Modal de creación: admin.js maneja el botón y el envío del formulario. -->
+    <dialog
+      class="dialogo-admin"
+      id="dialogo-crear-producto"
+      aria-labelledby="titulo-crear-producto"
+    >
+      <div class="dialogo-admin__encabezado">
+        <h2 id="titulo-crear-producto">Crear producto</h2>
+        <button type="button" data-cerrar="dialogo-crear-producto" aria-label="Cerrar diálogo">
+          ×
+        </button>
+      </div>
+      <form id="form-crear-producto" class="dialogo-admin__formulario">
+        <div class="dialogo-admin__cuerpo">
+          <div class="campo-formulario">
+            <label for="crear-nombre">NOMBRE</label>
+            <input type="text" id="crear-nombre" name="nombre" required />
+          </div>
+          <div class="campo-formulario">
+            <label for="crear-precio">PRECIO</label>
+            <input type="number" id="crear-precio" name="precio" min="0" step="0.01" required />
+          </div>
+          <div class="campo-formulario">
+            <label for="crear-descripcion">DESCRIPCIÓN</label>
+            <textarea id="crear-descripcion" name="descripcion" rows="4"></textarea>
+          </div>
+          <div class="campo-formulario">
+            <label for="crear-etiqueta">ETIQUETA</label>
+            <input type="text" id="crear-etiqueta" name="etiqueta" />
+          </div>
+          <div class="campo-formulario">
+            <label for="crear-anio">AÑO</label>
+            <input type="text" id="crear-anio" name="anio" />
+          </div>
+          <div class="campo-formulario">
+            <label for="crear-imagenes">IMÁGENES</label>
+            <input type="file" id="crear-imagenes" name="imagenes" accept="image/*" multiple />
+          </div>
+        </div>
+        <div class="dialogo-admin__acciones">
+          <button type="button" class="dialogo-admin__boton" data-cerrar="dialogo-crear-producto">
+            Cancelar
+          </button>
+          <button type="submit" class="dialogo-admin__boton dialogo-admin__boton--primario">
+            Crear producto
+          </button>
+        </div>
+      </form>
     </dialog>
 
     <!-- Footer compartido cargado desde componentes/footer.html. -->

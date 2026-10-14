@@ -240,6 +240,19 @@
   font-size: 0.85rem;
 }
 
+/* Barra de acciones del catálogo: botones alineados a la derecha, sobre el encabezado */
+.barra-acciones-catalogo {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.boton-crear-producto {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
 .contenedor-tarjetas {
   display: flex;
   flex-wrap: wrap;
@@ -274,6 +287,45 @@
   background-color: #1e3a8a;
   border-color: #2563eb;
 }
+
+/* Acciones de administración (editar/eliminar) sobre la imagen de la tarjeta */
+.acciones-tarjeta {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  display: flex;
+  gap: 6px;
+  z-index: 1;
+}
+
+.accion-tarjeta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #121212;
+  color: #93c5fd;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.accion-tarjeta:hover {
+  background-color: #1e3a8a;
+  border-color: #2563eb;
+}
+
+.accion-tarjeta-eliminar {
+  color: #f87171;
+}
+
+.accion-tarjeta-eliminar:hover {
+  background-color: #7f1d1d;
+  border-color: #dc2626;
+}
+
 
 .tarjeta-producto img {
   width: 100%;
@@ -330,6 +382,161 @@
 .tarjeta-subtitulo {
   display: none;
 }
+
+/* ==========================================================================
+   MODALES DE ADMINISTRACIÓN (editar / eliminar producto)
+   ========================================================================== */
+.dialogo-admin {
+  width: min(92%, 520px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid #282828;
+  border-radius: 8px;
+  background-color: #181818;
+  color: #ffffff;
+}
+
+.dialogo-admin::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dialogo-admin__encabezado,
+.dialogo-admin__acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.dialogo-admin__encabezado {
+  border-bottom: 1px solid #282828;
+}
+
+.dialogo-admin__encabezado h2 {
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+.dialogo-admin__encabezado button {
+  width: 34px;
+  height: 34px;
+  font-size: 1.4rem;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  background-color: #121212;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.dialogo-admin__cuerpo {
+  padding: 20px;
+}
+
+.dialogo-admin__texto {
+  color: #aaaaaa;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.dialogo-admin__texto strong {
+  color: #ffffff;
+}
+
+.dialogo-admin__acciones {
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid #282828;
+}
+
+.dialogo-admin__boton {
+  border: 1px solid #333333;
+  border-radius: 4px;
+  padding: 11px 16px;
+  background-color: #121212;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.dialogo-admin__boton--peligro {
+  background-color: #7f1d1d;
+  border-color: #dc2626;
+  color: #ffffff;
+}
+
+.dialogo-admin__boton--primario {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+/* Campos del formulario de edición, con la misma estética que el formulario de contacto. */
+.dialogo-admin__formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogo-admin .campo-formulario {
+  margin-bottom: 18px;
+}
+
+.dialogo-admin .campo-formulario:last-child {
+  margin-bottom: 0;
+}
+
+.dialogo-admin .campo-formulario label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #888888;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.dialogo-admin .campo-formulario input,
+.dialogo-admin .campo-formulario textarea {
+  width: 100%;
+  background-color: #111111;
+  border: 1px solid #282828;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.dialogo-admin .campo-formulario textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Input de archivos con la misma estética oscura que el resto del formulario */
+.dialogo-admin .campo-formulario input[type='file'] {
+  width: 100%;
+  background-color: #111111;
+  border: 1px dashed #333333;
+  color: #aaaaaa;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  outline: none;
+  color-scheme: dark;
+  cursor: pointer;
+}
+
+.dialogo-admin .campo-formulario input[type='file']::file-selector-button {
+  background-color: #121212;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 6px 12px;
+  margin-right: 12px;
+  font-weight: bold;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
 
 /* ==========================================================================
    ESTILOS DE BARRA DE ENVÍO Y FILTROS MÓVIL
@@ -476,6 +683,15 @@
     font-size: 0.75rem;
   }
 
+  .barra-acciones-catalogo {
+    margin-bottom: 15px;
+  }
+
+  .boton-crear-producto {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+
   /* Grilla de productos (2 Columnas) */
   .contenedor-tarjetas {
     gap: 15px;
@@ -530,5 +746,16 @@
 
   .tags-producto {
     display: none;
+  }
+
+  /* Acciones del modal apiladas en pantallas chicas */
+  .dialogo-admin__acciones {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dialogo-admin__boton {
+    width: 100%;
   }
 }

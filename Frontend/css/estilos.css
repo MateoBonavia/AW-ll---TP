@@ -55,6 +55,11 @@ select {
   font-family: inherit;
 }
 
+/* Bloquea el scroll de fondo mientras un diálogo modal está abierto. */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
 /* Mensajes que confirman acciones o explican errores en formularios frontend. */
 .mensaje-formulario {
   min-height: 1.5rem;

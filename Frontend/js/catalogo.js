@@ -44,9 +44,21 @@ export function renderizarCatalogo(productos, totalProductos) {
     const subtituloText = producto.tags && producto.tags.length > 0 ? producto.tags.join(" • ") : "";
     const subtituloHTML = subtituloText ? `<span class="tarjeta-subtitulo">${subtituloText}</span>` : "";
 
-    // Arma la tarjeta con la información que llegó desde productos.json.
+    // Acciones de administración sobre el producto (por ahora solo visuales).
+    const accionesHTML = `
+      <div class="acciones-tarjeta">
+        <span class="accion-tarjeta" role="button" tabindex="0" data-accion="editar" data-id="${producto.id}" aria-label="Editar ${producto.nombre}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+        </span>
+        <span class="accion-tarjeta accion-tarjeta-eliminar" role="button" tabindex="0" data-accion="eliminar" data-id="${producto.id}" aria-label="Eliminar ${producto.nombre}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+        </span>
+      </div>`;
+
+    // Arma la tarjeta con la información que llegó desde la API.
     article.innerHTML = `
       ${etiquetaHTML}
+      ${accionesHTML}
       <img src="${producto.imagenes[0]}" alt="Camiseta ${producto.nombre}" />
       ${subtituloHTML}
       <div class="producto-card__encabezado nombre-precio">
