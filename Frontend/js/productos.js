@@ -1,7 +1,7 @@
 'use strict';
 
 // Endpoint de la API que entrega el catálogo de productos.
-const URL_PRODUCTOS = 'http://localhost:3000/productos';
+const URL_PRODUCTOS = '/productos';
 
 export async function cargarProductos() {
   const respuesta = await fetch(URL_PRODUCTOS);

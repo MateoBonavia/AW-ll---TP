@@ -9,6 +9,7 @@ app.listen(port, () => console.log(`Servidor escuchando en puerto ${port}`));
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static("../Frontend"));
 
 const URL_PRODUCTOS =
   'https://6aab1be4ea0e22daa6dbcb90.mockapi.io/api/productos';
