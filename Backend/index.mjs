@@ -14,6 +14,9 @@ app.use(express.static("../Frontend"));
 const URL_PRODUCTOS =
   'https://6aab1be4ea0e22daa6dbcb90.mockapi.io/api/productos';
 
+const URL_LIGAS = 'https://6aab1be4ea0e22daa6dbcb90.mockapi.io/api/liga';
+
+
 app.get('/productos', async (req, res) => {
   const respuesta = await fetch(URL_PRODUCTOS);
 
@@ -24,7 +27,6 @@ app.get('/productos', async (req, res) => {
   res.status(200).json(await respuesta.json());
 });
 
-const URL_LIGAS = 'https://6aab1be4ea0e22daa6dbcb90.mockapi.io/api/liga';
 
 app.get('/liga', async (req, res) => {
   const respuesta = await fetch(URL_LIGAS);
@@ -37,3 +39,8 @@ app.get('/liga', async (req, res) => {
 
   res.status(200).json(ligas);
 });
+
+app.use((err, req, res, next)=>{
+  console.error(err.stack);
+  res.status(500).json({error: err.message});
+})
