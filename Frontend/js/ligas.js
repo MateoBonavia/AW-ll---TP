@@ -1,7 +1,7 @@
 'use strict';
 
 // Endpoint de la API que entrega las ligas disponibles.
-const URL_LIGAS = 'http://localhost:3000/liga';
+const URL_LIGAS = '/liga';
 
 export async function cargarLigas() {
   const respuesta = await fetch(URL_LIGAS);
