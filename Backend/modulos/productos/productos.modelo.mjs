@@ -65,3 +65,8 @@ export async function borrarPorId(id) {
 
   return resultado.rowCount > 0; // Si el id no existe, devolvemos false.
 }
+
+export async function actualizarPorId(id, producto) {
+  const resultado = await pool.query(`UPDATE productos SET nombre=$1, descripcion=$2, precio=$3, etiqueta=$4, anio=$5, liga_id=$6, imagenes=$7 WHERE id=$8 RETURNING ${CAMPOS_PRODUCTO}`, [producto.nombre, producto.descripcion, producto.precio, producto.etiqueta, producto.anio, producto.liga_id, producto.imagenes, id]);
+  return resultado.rows[0];
+}

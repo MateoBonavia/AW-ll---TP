@@ -4,7 +4,8 @@ import {
   buscarPorId,
   buscarTodos,
   insertarProducto,
-  borrarPorId
+  borrarPorId,
+  actualizarPorId
 } from './productos.modelo.mjs';
 import {
   mostrarError,
@@ -132,4 +133,26 @@ export async function eliminarProducto(req, res, next) {
   } catch (error) {
     return next(error);
   }
+}
+
+export function actualizarProducto(req, res) {
+  subirImagenes(req, res, async (error) => {
+    if (error) return mostrarError(res, 400, 'No se pudieron subir las imágenes.');
+    const id = leerId(req.params.id);
+    if (id === null) return mostrarError(res, 400, 'El id debe ser un número entero positivo.');
+    const actual = await buscarPorId(id);
+    if (!actual.length) return mostrarError(res, 404, 'No se encontró un producto con el id ingresado.');
+    const datos = req.body ?? {};
+    const nombre = String(datos.nombre ?? '').trim();
+    if (!nombre || !(Number(datos.precio) >= 0)) return mostrarError(res, 400, 'Los datos enviados son inválidos.');
+    try {
+      const producto = await actualizarPorId(id, {
+        nombre, descripcion: datos.descripcion ?? '', precio: Number(datos.precio), etiqueta: datos.etiqueta || null,
+        anio: datos.anio || datos['año'] || actual[0]['año'],
+        liga_id: datos.liga_id || actual[0].liga_id,
+        imagenes: req.files?.length ? rutasDeImagenes(req) : actual[0].imagenes,
+      });
+      return mostrarProducto(res, producto);
+    } catch (errorBD) { return mostrarError(res, 500, 'No se pudo actualizar el producto.'); }
+  });
 }
