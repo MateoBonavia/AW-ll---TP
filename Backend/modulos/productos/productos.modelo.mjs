@@ -40,8 +40,8 @@ export async function insertarProducto(producto) {
   const resultado = await pool.query(
     `
       INSERT INTO productos
-        (nombre, descripcion, precio, etiqueta, anio, liga_id, imagenes)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
+        (nombre, descripcion, precio, etiqueta, anio, liga_id, imagenes, talles, tags)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING ${CAMPOS_PRODUCTO}
     `,
     [
@@ -52,6 +52,8 @@ export async function insertarProducto(producto) {
       producto.anio,
       producto.liga_id,
       producto.imagenes,
+      producto.talles,
+      producto.tags,
     ]
   );
 

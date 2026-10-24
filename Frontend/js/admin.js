@@ -71,8 +71,22 @@ function abrirCreacion() {
   abrirDialogo(dialogo);
 }
 
-export function inicializarAccionesCatalogo(productos) {
+function cargarOpcionesDeLigas(ligas) {
+  const select = document.getElementById('crear-liga');
+
+  if (!select) return;
+
+  ligas.forEach((liga) => {
+    const opcion = document.createElement('option');
+    opcion.value = liga.id;
+    opcion.textContent = liga.nombre;
+    select.appendChild(opcion);
+  });
+}
+
+export function inicializarAccionesCatalogo(productos, ligas) {
   productosAdmin = productos;
+  cargarOpcionesDeLigas(ligas);
 
   const contenedor = document.getElementById('contenedor-tarjetas');
   const dialogoConfirmacion = document.getElementById('dialogo-confirmar-eliminacion');

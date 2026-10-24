@@ -68,7 +68,7 @@ export function crearProducto(req, res) {
       return mostrarError(res, 400, 'No se pudieron subir las imágenes.');
     }
 
-    const { nombre, descripcion, precio, etiqueta, anio, liga_id } =
+    const { nombre, descripcion, precio, etiqueta, anio, liga_id, talles, tags } =
       req.body ?? {};
 
     const nombreLimpio = String(nombre ?? '').trim();
@@ -94,6 +94,11 @@ export function crearProducto(req, res) {
         anio: anio || null,
         liga_id: liga_id || null,
         imagenes: rutasDeImagenes(req),
+        talles: [].concat(talles ?? []),
+        tags: String(tags ?? '')
+          .split(',')
+          .map((tag) => tag.trim().toUpperCase())
+          .filter(Boolean),
       });
 
       return mostrarProductoCreado(res, producto);

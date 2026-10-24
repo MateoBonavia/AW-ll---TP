@@ -479,6 +479,38 @@
             <input type="text" id="crear-anio" name="anio" />
           </div>
           <div class="campo-formulario">
+            <label for="crear-liga">LIGA</label>
+            <select id="crear-liga" name="liga_id">
+              <option value="">Sin liga</option>
+            </select>
+          </div>
+          <fieldset class="campo-formulario">
+            <legend>TALLES</legend>
+            <div class="opciones-talles">
+              <label class="opcion-talle">
+                <input type="checkbox" name="talles" value="S" /><span>S</span>
+              </label>
+              <label class="opcion-talle">
+                <input type="checkbox" name="talles" value="M" /><span>M</span>
+              </label>
+              <label class="opcion-talle">
+                <input type="checkbox" name="talles" value="L" /><span>L</span>
+              </label>
+              <label class="opcion-talle">
+                <input type="checkbox" name="talles" value="XL" /><span>XL</span>
+              </label>
+            </div>
+          </fieldset>
+          <div class="campo-formulario">
+            <label for="crear-tags">TAGS</label>
+            <input
+              type="text"
+              id="crear-tags"
+              name="tags"
+              placeholder="Separados por coma: SELECCIÓN, COPA AMÉRICA"
+            />
+          </div>
+          <div class="campo-formulario">
             <label for="crear-imagenes">IMÁGENES</label>
             <input type="file" id="crear-imagenes" name="imagenes" accept="image/*" multiple />
           </div>
