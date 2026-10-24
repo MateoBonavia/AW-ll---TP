@@ -6,3 +6,17 @@ GET http://localhost:3000/api/v1/productos/1
 
 ### GET a todas las ligas
 GET http://localhost:3000/api/v1/ligas
+
+### POST de un producto (sin imagen)
+POST http://localhost:3000/api/v1/productos
+Content-Type: application/json
+
+{
+    "nombre": "Camiseta de prueba",
+    "precio": 19.99,
+    "descripcion": "Camiseta de prueba para testing",
+    "liga_id": 3
+}
+
+### DELETE de un producto
+DELETE http://localhost:3000/api/v1/productos/11

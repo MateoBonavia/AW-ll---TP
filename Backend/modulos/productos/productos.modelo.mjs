@@ -35,3 +35,31 @@ export async function buscarPorId(id) {
 
   return resultado.rows;
 }
+
+export async function insertarProducto(producto) {
+  const resultado = await pool.query(
+    `
+      INSERT INTO productos
+        (nombre, descripcion, precio, etiqueta, anio, liga_id, imagenes)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      RETURNING ${CAMPOS_PRODUCTO}
+    `,
+    [
+      producto.nombre,
+      producto.descripcion,
+      producto.precio,
+      producto.etiqueta,
+      producto.anio,
+      producto.liga_id,
+      producto.imagenes,
+    ]
+  );
+
+  return resultado.rows[0];
+}
+
+export async function borrarPorId(id) {
+  const resultado = await pool.query('DELETE FROM productos WHERE id = $1', [id]);
+
+  return resultado.rowCount > 0; // Si el id no existe, devolvemos false.
+}
