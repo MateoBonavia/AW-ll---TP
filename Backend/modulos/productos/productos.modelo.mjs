@@ -35,3 +35,29 @@ export async function buscarPorId(id) {
 
   return resultado.rows;
 }
+
+export async function actualizarPorId(id, producto) {
+  const resultado = await pool.query(
+    `
+      UPDATE productos
+      SET nombre = $1, descripcion = $2, precio = $3, etiqueta = $4,
+          anio = $5, liga_id = $6, imagenes = $7, talles = $8, tags = $9
+      WHERE id = $10
+      RETURNING ${CAMPOS_PRODUCTO}
+    `,
+    [
+      producto.nombre,
+      producto.descripcion,
+      producto.precio,
+      producto.etiqueta,
+      producto.anio,
+      producto.liga_id,
+      producto.imagenes,
+      producto.talles,
+      producto.tags,
+      id,
+    ]
+  );
+
+  return resultado.rows;
+}

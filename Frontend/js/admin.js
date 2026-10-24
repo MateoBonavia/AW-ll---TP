@@ -1,7 +1,11 @@
 'use strict';
 
+import { actualizarProducto } from './productos.js';
+
 // Copia de la lista del catálogo para buscar el producto desde los botones de cada tarjeta.
 let productosAdmin = [];
+let idProductoEnEdicion = null;
+let alActualizarCatalogo = () => {};
 
 function abrirDialogo(dialogo) {
   if (!dialogo) return;
@@ -40,6 +44,7 @@ function abrirEdicion(producto) {
   const formulario = document.getElementById('form-editar-producto');
 
   if (formulario) {
+    idProductoEnEdicion = producto.id;
     // Carga los datos actuales del producto en cada campo del formulario.
     formulario.elements.namedItem('nombre').value = producto.nombre;
     formulario.elements.namedItem('precio').value = producto.precio;
@@ -65,8 +70,9 @@ function abrirCreacion() {
   abrirDialogo(dialogo);
 }
 
-export function inicializarAccionesCatalogo(productos) {
+export function inicializarAccionesCatalogo(productos, alActualizar = () => {}) {
   productosAdmin = productos;
+  alActualizarCatalogo = alActualizar;
 
   const contenedor = document.getElementById('contenedor-tarjetas');
   const dialogoConfirmacion = document.getElementById('dialogo-confirmar-eliminacion');
@@ -112,11 +118,31 @@ export function inicializarAccionesCatalogo(productos) {
     });
   }
 
-  // Por ahora solo cierra el diálogo; acá se haría el PUT con los datos del formulario.
   if (formularioEdicion) {
-    formularioEdicion.addEventListener('submit', (evento) => {
+    formularioEdicion.addEventListener('submit', async (evento) => {
       evento.preventDefault();
-      cerrarDialogo(dialogoEdicion);
+
+      const productoActual = productosAdmin.find((producto) => producto.id === idProductoEnEdicion);
+      if (!productoActual) return;
+
+      const productoEditado = {
+        ...productoActual,
+        nombre: formularioEdicion.elements.namedItem('nombre').value.trim(),
+        precio: Number(formularioEdicion.elements.namedItem('precio').value),
+        descripcion: formularioEdicion.elements.namedItem('descripcion').value.trim(),
+        etiqueta: formularioEdicion.elements.namedItem('etiqueta').value.trim() || null,
+        'año': formularioEdicion.elements.namedItem('anio').value.trim() || null,
+      };
+
+      try {
+        const actualizado = await actualizarProducto(idProductoEnEdicion, productoEditado);
+        const indice = productosAdmin.findIndex((producto) => producto.id === actualizado.id);
+        Object.assign(productosAdmin[indice], actualizado);
+        cerrarDialogo(dialogoEdicion);
+        alActualizarCatalogo();
+      } catch (error) {
+        window.alert(error.message);
+      }
     });
   }
 
