@@ -32,7 +32,7 @@ INSERT INTO productos (nombre, descripcion, precio, etiqueta, anio, liga_id, ima
      ARRAY['./recursos/Camisetas/Argentina/titular/titular_frente.jpg', './recursos/Camisetas/Argentina/titular/titular_dorso.jpg', './recursos/Camisetas/Argentina/titular/titular_detalle.jpg'],
      ARRAY['S', 'M', 'L'],
      ARRAY['SELECCIÓN', 'COPA AMÉRICA', 'CAMPEÓN DEL MUNDO']),
-    ('Chelsea Titular 2025', 'Camiseta oficial titular del Chelsea FC para la temporada 20225. Destaca por su tono azul vibrante con trama gráfica simulando fuego líquido, cuello estilo polo y detalles dorados en el Swoosh y el escudo.', 80, 'NUEVO', '2025', 2,
+    ('Chelsea Titular 2025', 'Camiseta oficial titular del Chelsea FC para la temporada 2025. Destaca por su tono azul vibrante con trama gráfica simulando fuego líquido, cuello estilo polo y detalles dorados en el Swoosh y el escudo.', 80, 'NUEVO', '2025', 2,
      ARRAY['./recursos/Camisetas/Chelsea/titular/titular_frente.jpg', './recursos/Camisetas/Chelsea/titular/titular_dorso.jpg'],
      ARRAY['M', 'L', 'XL'],
      ARRAY['PREMIER LEAGUE', 'INGLATERRA', 'CHELSEA']),
