@@ -46,7 +46,7 @@ app.get('/liga', async (req, res) => {
 });
 */
 
-// Productos (Camisetas): las rutas se agrupan en su módulo MVC.
+// Productos.
 app.use('/api/v1/productos', productosRouter);
 
 // Ligas

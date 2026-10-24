@@ -1,5 +1,9 @@
 import { buscarPorId, buscarTodos } from './productos.modelo.mjs';
-import { mostrarError, mostrarProductos } from './productos.vista.mjs';
+import {
+  mostrarError,
+  mostrarProducto,
+  mostrarProductos,
+} from './productos.vista.mjs';
 
 function leerId(valor) {
   const id = Number(valor);
@@ -33,7 +37,7 @@ export async function obtenerProductoPorId(req, res, next) {
       );
     }
 
-    return mostrarProductos(res, productos);
+    return mostrarProducto(res, productos[0]);
   } catch (error) {
     return next(error);
   }

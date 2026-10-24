@@ -1,6 +1,8 @@
 // Variable de estado para el carrusel de imágenes
 "use strict";
 
+import { cargarProductoPorId } from './productos.js';
+
 // Guardan el estado necesario para navegar por el detalle sin recargar la página.
 let activeImgIndex = 0;
 let activeProductImgs = [];
@@ -10,7 +12,7 @@ let talleSeleccionado = "";
 let accionesCarrito = null;
 
 // Enrutador de la aplicación
-function router() {
+async function router() {
   // El hash funciona como una ruta simple, por ejemplo: #producto=argentina.
   const hash = window.location.hash;
   const vistaInicio = document.getElementById('vista-inicio');
@@ -22,10 +24,13 @@ function router() {
   // Comprobar si el hash coincide con la ruta de un producto
   if (hash.startsWith('#producto=')) {
     const id = hash.replace('#producto=', '');
-    // Busca en los datos JSON el producto pedido por la URL.
-    const producto = productosCargados.find((p) => p.id === id);
+    try {
+      // El detalle siempre consulta el producto individual en la API.
+      const producto = await cargarProductoPorId(id);
 
-    if (producto) {
+      // Evita mostrar una respuesta vieja si el hash cambió durante la petición.
+      if (window.location.hash !== hash) return;
+
       // Renderizar los detalles de ese producto
       renderDetail(producto);
       vistaInicio.style.display = 'none';
@@ -33,6 +38,16 @@ function router() {
 
       // Desplazar la vista al tope de la página
       window.scrollTo(0, 0);
+      return;
+    } catch (error) {
+      console.error(error);
+      const contenedor = document.getElementById('contenedor-tarjetas');
+
+      vistaInicio.style.display = 'block';
+      vistaDetalle.style.display = 'none';
+      if (contenedor) {
+        contenedor.innerHTML = '<p role="alert">No se pudo cargar el producto solicitado.</p>';
+      }
       return;
     }
   }
