@@ -27,8 +27,7 @@ export async function cargarProductoPorId(id) {
 export async function actualizarProducto(id, producto) {
   const respuesta = await fetch(`${URL_PRODUCTOS}/${encodeURIComponent(id)}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(producto),
+    body: producto,
   });
 
   if (!respuesta.ok) {
