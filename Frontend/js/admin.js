@@ -3,6 +3,10 @@
 // Copia de la lista del catálogo para buscar el producto desde los botones de cada tarjeta.
 let productosAdmin = [];
 
+const URL_PRODUCTOS = 'http://localhost:3000/api/v1/productos';
+
+let idProductoAEliminar = null; // Para recordar el producto que se quiere eliminar mientras se abre el diálogo de confirmación.
+
 function abrirDialogo(dialogo) {
   if (!dialogo) return;
 
@@ -27,6 +31,8 @@ function cerrarDialogo(dialogo) {
 function abrirConfirmacion(producto) {
   const dialogo = document.getElementById('dialogo-confirmar-eliminacion');
   const nombre = document.getElementById('nombre-producto-eliminacion');
+
+  idProductoAEliminar = producto.id;
 
   if (nombre) {
     nombre.textContent = producto.nombre;
@@ -106,9 +112,26 @@ export function inicializarAccionesCatalogo(productos) {
   });
 
   // Por ahora solo cierra el diálogo; acá se haría el DELETE contra la API.
-  if (botonConfirmarEliminacion) {
-    botonConfirmarEliminacion.addEventListener('click', () => {
-      cerrarDialogo(dialogoConfirmacion);
+    if (botonConfirmarEliminacion) {
+    botonConfirmarEliminacion.addEventListener('click', async () => {
+      try {
+        const respuesta = await fetch(`${URL_PRODUCTOS}/${idProductoAEliminar}`, {
+          method: 'DELETE',
+        });
+
+        // 204: se borró y no hay cuerpo para leer. Cualquier otro caso trae { error }.
+        if (!respuesta.ok) {
+          const { error } = await respuesta.json().catch(() => ({}));
+          alert(error ?? 'No se pudo eliminar el producto.');
+          return;
+        }
+
+        cerrarDialogo(dialogoConfirmacion);
+        window.location.reload(); // vuelve a pedir el catálogo sin el producto borrado
+      } catch (error) {
+        console.error(error);
+        alert('No se pudo conectar con el servidor.');
+      }
     });
   }
 
@@ -125,10 +148,28 @@ export function inicializarAccionesCatalogo(productos) {
   }
 
   // Por ahora solo cierra el diálogo; acá se haría el POST con los datos del formulario.
-  if (formularioCreacion) {
-    formularioCreacion.addEventListener('submit', (evento) => {
+    if (formularioCreacion) {
+    formularioCreacion.addEventListener('submit', async (evento) => {
       evento.preventDefault();
-      cerrarDialogo(dialogoCreacion);
+
+      try {
+        const respuesta = await fetch(URL_PRODUCTOS, {
+          method: 'POST',
+          body: new FormData(formularioCreacion),
+        });
+
+        if (!respuesta.ok) {
+          const { error } = await respuesta.json().catch(() => ({}));
+          alert(error ?? 'No se pudo crear el producto.');
+          return;
+        }
+
+        cerrarDialogo(dialogoCreacion);
+        window.location.reload(); // vuelve a pedir el catálogo y se ve el producto nuevo
+      } catch (error) {
+        console.error(error);
+        alert('No se pudo conectar con el servidor.');
+      }
     });
   }
 }

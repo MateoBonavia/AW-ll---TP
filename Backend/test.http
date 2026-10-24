@@ -19,4 +19,4 @@ Content-Type: application/json
 }
 
 ### DELETE de un producto
-DELETE http://localhost:3000/api/v1/productos/11
+DELETE http://localhost:3000/api/v1/productos/12
