@@ -1,7 +1,10 @@
 'use strict';
 
 // Endpoint de la API que entrega las ligas disponibles.
-const URL_LIGAS = '/liga';
+// Se usa la misma base que productos para que Live Server (puerto 5500)
+// consulte al backend que corre en el puerto 3000.
+const API_BASE_URL = 'http://localhost:3000';
+const URL_LIGAS = `${API_BASE_URL}/api/v1/ligas`;
 
 export async function cargarLigas() {
   const respuesta = await fetch(URL_LIGAS);
