@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import pool from './conexion.bd.mjs';
+import productosRouter from './modulos/productos/productos.rutas.mjs';
 
 dotenv.config();
 
@@ -45,63 +46,8 @@ app.get('/liga', async (req, res) => {
 });
 */
 
-function leerId(req) {
-  const id = Number(req.params.id);
-  return Number.isInteger(id) && id > 0 ? id : null;
-}
-
-// Productos (Camisetas)
-app.get('/api/v1/productos', async (req, res) => {
-  const respuesta = await pool.query(`
-    SELECT
-      id,
-      nombre,
-      descripcion,
-      precio::float8 AS precio,
-      etiqueta,
-      anio AS "año",
-      liga_id,
-      imagenes,
-      talles,
-      tags
-    FROM productos
-    ORDER BY id
-  `);
-  res.status(200).json(respuesta.rows);
-});
-
-app.get('/api/v1/productos/:id', async (req, res) => {
-  const id = leerId(req);
-  if (id === null) {
-    return res
-      .status(400)
-      .json({ error: 'El id debe ser un número entero positivo.' });
-  }
-  const respuesta = await pool.query(
-    `
-    SELECT
-      id,
-      nombre,
-      descripcion,
-      precio::float8 AS precio,
-      etiqueta,
-      anio AS "año",
-      liga_id,
-      imagenes,
-      talles,
-      tags
-    FROM productos
-    WHERE id = $1
-  `,
-    [id]
-  );
-  if (respuesta.rows.length === 0) {
-    return res
-      .status(404)
-      .json({ error: 'No se encontró un producto con el id ingresado.' });
-  }
-  res.status(200).json(respuesta.rows);
-});
+// Productos (Camisetas): las rutas se agrupan en su módulo MVC.
+app.use('/api/v1/productos', productosRouter);
 
 // Ligas
 app.get('/api/v1/ligas', async (req, res) => {

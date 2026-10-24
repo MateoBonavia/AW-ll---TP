@@ -1,7 +1,5 @@
 'use strict';
 
-// Endpoint de la API que entrega el catálogo de productos.
-// La API corre de forma independiente del servidor estático del frontend.
 const API_BASE_URL = 'http://localhost:3000';
 const URL_PRODUCTOS = `${API_BASE_URL}/api/v1/productos`;
 
