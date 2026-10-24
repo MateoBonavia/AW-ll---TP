@@ -1,7 +1,11 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import pool from './conexion.bd.mjs';
 
-const port = 3000;
+dotenv.config();
+
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -16,7 +20,7 @@ const URL_PRODUCTOS =
 
 const URL_LIGAS = 'https://6aab1be4ea0e22daa6dbcb90.mockapi.io/api/liga';
 
-
+/*
 app.get('/productos', async (req, res) => {
   const respuesta = await fetch(URL_PRODUCTOS);
 
@@ -39,6 +43,37 @@ app.get('/liga', async (req, res) => {
 
   res.status(200).json(ligas);
 });
+*/
+
+function leerId(req) {
+  const id = Number(req.params.id)
+  return Number.isInteger(id) && id > 0 ? id : null
+}
+
+// Productos (Camisetas)
+app.get('/api/v1/productos', async (req, res)=> {
+  const respuesta = await pool.query('SELECT * FROM Productos');
+  res.status(200).json(respuesta.rows);
+})
+
+app.get('/api/v1/productos/:id', async (req, res)=> {
+  const id = leerId(req)
+  if(id === null){
+    return res.status(400).json({error: 'El id debe ser un número entero positivo.'})
+  }
+  const respuesta = await pool.query('SELECT * FROM Productos WHERE id = $1', [id]);
+  if(respuesta.rows.length === 0){
+    return res.status(404).json({error:'No se encontró un producto con el id ingresado.'})
+  }
+  res.status(200).json(respuesta.rows);
+;})
+
+// Ligas
+app.get('/api/v1/ligas', async (req, res)=> {
+  const respuesta = await pool.query('SELECT * FROM Ligas')
+  res.status(200).json(respuesta.rows);
+})
+
 
 app.use((err, req, res, next)=>{
   console.error(err.stack);

@@ -1,0 +1,10 @@
+### GET a todos los productos
+GET http://localhost:3000/api/v1/productos
+
+### GET a un producto por id
+
+GET http://localhost:3000/api/v1/productos/1
+
+### GET a todas las ligas
+
+GET http://localhost:3000/api/v1/ligas

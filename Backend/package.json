@@ -20,6 +20,9 @@
   "type": "module",
   "dependencies": {
     "cors": "^2.8.6",
-    "express": "5.2.1"
+    "dotenv": "18.0.8",
+    "express": "5.2.1",
+    "multer": "^2.5.0",
+    "pg": "^8.23.1"
   }
 }
