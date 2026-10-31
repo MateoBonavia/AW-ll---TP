@@ -109,23 +109,123 @@ header nav ul li a[aria-current='page'] {
   padding-bottom: 5px;
 }
 
-/* Enlaces derecha (Mi Cuenta / Carrito) */
+/* Acciones de cuenta y carrito */
 header nav div:last-child {
   display: flex;
   gap: 20px;
   align-items: center;
 }
 
-header nav div a {
+header nav div a,
+header nav div button {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 0.9rem;
 }
 
+header nav div button {
+  border: 0;
+  background: none;
+  color: var(--color-texto);
+  cursor: pointer;
+}
+
+header nav div button[hidden] {
+  display: none;
+}
+
 header nav div img {
   width: 18px;
   height: 18px;
+}
+
+/* Formularios de acceso compartidos por todas las páginas. */
+.dialogo-cuenta {
+  width: min(92%, 420px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+}
+
+.dialogo-cuenta::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.dialogo-cuenta__encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.dialogo-cuenta__encabezado h2 {
+  font-size: 1.2rem;
+}
+
+.dialogo-cuenta__cerrar {
+  border: 0;
+  background: none;
+  color: var(--color-texto);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dialogo-cuenta__formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+}
+
+.dialogo-cuenta__formulario label {
+  font-size: 0.9rem;
+}
+
+.dialogo-cuenta__formulario input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 11px 12px;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  background: var(--color-superficie-oscura);
+  color: var(--color-texto);
+}
+
+.dialogo-cuenta__mensaje {
+  min-height: 1.4rem;
+  color: var(--color-acento-suave);
+  font-size: 0.85rem;
+}
+
+.dialogo-cuenta__acciones {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dialogo-cuenta__acciones button {
+  padding: 10px 14px;
+  border-radius: var(--radio);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dialogo-cuenta__secundario {
+  border: 1px solid var(--color-borde);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+.dialogo-cuenta__primario {
+  border: 1px solid var(--color-acento);
+  background: var(--color-acento);
+  color: var(--color-texto);
 }
 
 /* ==========================================================================
@@ -304,12 +404,12 @@ footer > div:last-child p {
     padding: 5px 0;
   }
 
-  /* Ocultar botón de cuenta y texto del carrito */
-  header nav div:last-child a:first-child {
+  /* En pantallas pequeñas se conservan los iconos de cuenta y carrito. */
+  header nav div:last-child a span {
     display: none;
   }
 
-  header nav div:last-child a span {
+  header nav div:last-child button span {
     display: none;
   }
 

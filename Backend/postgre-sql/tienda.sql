@@ -21,6 +21,14 @@ CREATE TABLE productos (
     tags TEXT[] NOT NULL DEFAULT '{}'
 );
 
+-- Usuarios registrados. session_id se asigna al iniciar sesión.
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    correo VARCHAR(254) NOT NULL UNIQUE,
+    session_id VARCHAR(64) UNIQUE,
+    pass_hash TEXT NOT NULL
+);
+
 INSERT INTO ligas (nombre) VALUES
     ('Selecciones'),
     ('Premier League'),

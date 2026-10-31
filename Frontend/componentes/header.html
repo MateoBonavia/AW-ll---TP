@@ -14,8 +14,130 @@
     </ul>
 
     <div>
-      <a href="#"><img src="./recursos/Icon_profile.png" alt="Perfil" /><span>Mi Cuenta</span></a>
-      <a href="#" id="abrir-carrito"><img src="./recursos/Icon_cart.png" alt="Carrito" /><span id="contador-carrito">Carrito (0)</span></a>
+      <button
+        type="button"
+        id="abrir-login"
+        aria-label="Iniciar sesión"
+        aria-haspopup="dialog"
+        aria-controls="dialogo-login"
+        hidden
+      >
+        <img src="./recursos/Icon_profile.png" alt="" /><span
+          >Iniciar sesión</span
+        >
+      </button>
+      <button
+        type="button"
+        id="cerrar-sesion"
+        aria-label="Cerrar sesión"
+        hidden
+      >
+        <img src="./recursos/Icon_profile.png" alt="" /><span
+          >Cerrar sesión</span
+        >
+      </button>
+      <a href="#" id="abrir-carrito"
+        ><img src="./recursos/Icon_cart.png" alt="Carrito" /><span
+          id="contador-carrito"
+          >Carrito (0)</span
+        ></a
+      >
     </div>
   </nav>
 </header>
+
+<dialog
+  class="dialogo-cuenta"
+  id="dialogo-login"
+  aria-labelledby="titulo-login"
+>
+  <div class="dialogo-cuenta__encabezado">
+    <h2 id="titulo-login">Iniciar sesión</h2>
+    <button
+      type="button"
+      class="dialogo-cuenta__cerrar"
+      data-cerrar-cuenta
+      aria-label="Cerrar"
+    >
+      ×
+    </button>
+  </div>
+  <form id="form-login" class="dialogo-cuenta__formulario">
+    <label for="login-email">Email</label>
+    <input
+      id="login-email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      required
+    />
+    <label for="login-password">Contraseña</label>
+    <input
+      id="login-password"
+      name="password"
+      type="password"
+      autocomplete="current-password"
+      required
+    />
+    <p class="dialogo-cuenta__mensaje" role="status" aria-live="polite"></p>
+    <div class="dialogo-cuenta__acciones">
+      <button
+        type="button"
+        id="abrir-registro"
+        class="dialogo-cuenta__secundario"
+      >
+        Registrarse
+      </button>
+      <button type="submit" class="dialogo-cuenta__primario">Ingresar</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog
+  class="dialogo-cuenta"
+  id="dialogo-registro"
+  aria-labelledby="titulo-registro"
+>
+  <div class="dialogo-cuenta__encabezado">
+    <h2 id="titulo-registro">Registrarse</h2>
+    <button
+      type="button"
+      class="dialogo-cuenta__cerrar"
+      data-cerrar-cuenta
+      aria-label="Cerrar"
+    >
+      ×
+    </button>
+  </div>
+  <form id="form-registro" class="dialogo-cuenta__formulario">
+    <label for="registro-email">Email</label>
+    <input
+      id="registro-email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      required
+    />
+    <label for="registro-password">Contraseña</label>
+    <input
+      id="registro-password"
+      name="password"
+      type="password"
+      autocomplete="new-password"
+      required
+    />
+    <p class="dialogo-cuenta__mensaje" role="status" aria-live="polite"></p>
+    <div class="dialogo-cuenta__acciones">
+      <button
+        type="button"
+        id="volver-login"
+        class="dialogo-cuenta__secundario"
+      >
+        Volver
+      </button>
+      <button type="submit" class="dialogo-cuenta__primario">
+        Crear cuenta
+      </button>
+    </div>
+  </form>
+</dialog>
