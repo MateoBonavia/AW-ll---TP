@@ -26,7 +26,7 @@ async function iniciarAplicacion() {
     // El carrito se prepara una vez y sus acciones se pasan al detalle SPA.
     const carrito = inicializarCarrito();
     inicializarCatalogo(productos);
-    inicializarAccionesCatalogo(productos, () => {
+    inicializarAccionesCatalogo(productos, ligas, () => {
       renderizarCatalogo(productos, productos.length);
     });
     inicializarFiltros(productos, ligas, renderizarCatalogo);

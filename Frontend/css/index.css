@@ -537,6 +537,117 @@
   cursor: pointer;
 }
 
+/* --- Campos nuevos del formulario: liga, talles y tags --- */
+
+/* Select de liga: misma estética oscura que los inputs */
+.dialogo-admin .campo-formulario select {
+  width: 100%;
+  background-color: #111111;
+  border: 1px solid #282828;
+  color: #ffffff;
+  padding: 12px 36px 12px 12px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  color-scheme: dark;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23888888' stroke-width='2'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.dialogo-admin .campo-formulario input::placeholder {
+  color: #666666;
+}
+
+/* Resalta el campo que tiene el foco (aplica a todos los campos del diálogo) */
+.dialogo-admin .campo-formulario input:focus,
+.dialogo-admin .campo-formulario textarea:focus,
+.dialogo-admin .campo-formulario select:focus {
+  border-color: #3b82f6;
+}
+
+/* Grupo de talles: el fieldset se ve igual que un campo más */
+.dialogo-admin fieldset.campo-formulario {
+  min-width: 0;
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+}
+
+.dialogo-admin .campo-formulario legend {
+  display: block;
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #888888;
+  letter-spacing: 1px;
+}
+
+.dialogo-admin .campo-formulario .opciones-talles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Cada talle es un botón; el checkbox real queda oculto pero usable con el teclado */
+.dialogo-admin .campo-formulario .opcion-talle {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  font-size: inherit;
+  letter-spacing: normal;
+  color: inherit;
+  cursor: pointer;
+}
+
+.dialogo-admin .campo-formulario .opcion-talle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+}
+
+.dialogo-admin .campo-formulario .opcion-talle span {
+  display: inline-block;
+  min-width: 52px;
+  padding: 10px 14px;
+  text-align: center;
+  background-color: #111111;
+  border: 1px solid #282828;
+  border-radius: 4px;
+  color: #aaaaaa;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.dialogo-admin .campo-formulario .opcion-talle:hover span {
+  border-color: #444444;
+  color: #ffffff;
+}
+
+.dialogo-admin .campo-formulario .opcion-talle input:checked + span {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+.dialogo-admin .campo-formulario .opcion-talle input:focus-visible + span {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+/* Con más campos, el formulario scrollea por dentro y los botones siempre se ven */
+.dialogo-admin__formulario .dialogo-admin__cuerpo {
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
 
 /* ==========================================================================
    ESTILOS DE BARRA DE ENVÍO Y FILTROS MÓVIL
