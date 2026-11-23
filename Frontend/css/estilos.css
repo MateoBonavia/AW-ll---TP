@@ -470,3 +470,30 @@ footer > div:last-child p {
     text-transform: uppercase;
   }
 }
+
+/* Avisos dentro de la interfaz (reemplazan a alert): esquina inferior derecha. */
+.avisos {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: min(90vw, 360px);
+}
+
+.aviso {
+  padding: 12px 16px;
+  border: 1px solid var(--color-acento);
+  border-radius: var(--radio);
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  font-size: 0.9rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.aviso--error {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}

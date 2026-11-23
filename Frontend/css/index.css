@@ -870,3 +870,21 @@
     width: 100%;
   }
 }
+
+/* Las acciones de administración solo se muestran con una sesión iniciada
+   (componentes.js agrega la clase sesion-activa al body). */
+body:not(.sesion-activa) .barra-acciones-catalogo,
+body:not(.sesion-activa) .acciones-tarjeta {
+  display: none;
+}
+
+/* Mensajes de error o confirmación dentro de los diálogos de administración. */
+.dialogo-admin__mensaje {
+  min-height: 0;
+  margin: 0;
+  padding: 0 20px 12px;
+}
+
+.dialogo-admin__mensaje:empty {
+  padding: 0;
+}

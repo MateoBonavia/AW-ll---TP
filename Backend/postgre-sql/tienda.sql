@@ -1,6 +1,12 @@
 -- Conectar a la base de datos 'tienda'
 \c tienda;
 
+-- Borra las tablas si ya existen, para poder recrear la BD desde cero
+-- (pnpm bd:recrear). En orden inverso a sus dependencias.
+DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS productos;
+DROP TABLE IF EXISTS ligas;
+
 -- Ligas 
 CREATE TABLE ligas (
     id SERIAL PRIMARY KEY,

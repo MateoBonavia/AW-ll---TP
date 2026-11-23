@@ -1,0 +1,774 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AW-II - Tienda de Camisetas de Fútbol",
+    "version": "1.0.0",
+    "description": "API REST para administrar el catálogo de camisetas de fútbol. Las operaciones de lectura son públicas; crear, modificar y eliminar productos requieren una sesión iniciada (cookie `token` con un JWT, obtenida en POST /api/v1/login). Formato de respuestas: datos → el recurso; acciones → { mensaje, ... }; errores → { error }."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor de desarrollo"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Productos",
+      "description": "Gestión del catálogo de camisetas de fútbol"
+    },
+    {
+      "name": "Ligas",
+      "description": "Ligas utilizadas para filtrar el catálogo"
+    },
+    {
+      "name": "Autenticación",
+      "description": "Registro, inicio y cierre de sesión con JWT en cookie"
+    }
+  ],
+  "paths": {
+    "/api/v1/productos": {
+      "get": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Obtener todas las camisetas",
+        "operationId": "obtenerProductos",
+        "responses": {
+          "200": {
+            "description": "Listado obtenido correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Camiseta"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Crear una camiseta",
+        "operationId": "crearProducto",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CamisetaEntrada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Camiseta creada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Camiseta"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/DatosInvalidos"
+          },
+          "401": {
+            "$ref": "#/components/responses/NoAutenticado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "description": "Requiere una sesión iniciada."
+      }
+    },
+    "/api/v1/productos/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Identificador numérico único de la camiseta.",
+          "schema": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 1
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Obtener una camiseta por ID",
+        "operationId": "obtenerProductoPorId",
+        "responses": {
+          "200": {
+            "description": "Camiseta encontrada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Camiseta"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/IdInvalido"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProductoNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Actualizar una camiseta",
+        "description": "Si se adjuntan imágenes nuevas, reemplazan las existentes. Si no se adjuntan, se conservan. Requiere una sesión iniciada.",
+        "operationId": "actualizarProducto",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CamisetaEntrada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Camiseta actualizada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Camiseta"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/DatosInvalidos"
+          },
+          "401": {
+            "$ref": "#/components/responses/NoAutenticado"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProductoNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Eliminar una camiseta",
+        "operationId": "eliminarProducto",
+        "responses": {
+          "200": {
+            "description": "Camiseta eliminada correctamente. Devuelve el producto eliminado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CamisetaEliminada"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/IdInvalido"
+          },
+          "401": {
+            "$ref": "#/components/responses/NoAutenticado"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProductoNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "description": "Elimina la camiseta y borra del disco sus imágenes. Requiere una sesión iniciada."
+      }
+    },
+    "/api/v1/ligas": {
+      "get": {
+        "tags": [
+          "Ligas"
+        ],
+        "summary": "Obtener todas las ligas",
+        "operationId": "obtenerLigas",
+        "responses": {
+          "200": {
+            "description": "Listado de ligas ordenado por id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Liga"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      }
+    },
+    "/api/v1/registrarse": {
+      "post": {
+        "tags": [
+          "Autenticación"
+        ],
+        "summary": "Registrar un usuario",
+        "operationId": "registrarse",
+        "description": "Crea un usuario. La contraseña se guarda hasheada con bcrypt.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Credenciales"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario creado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Mensaje"
+                    }
+                  ],
+                  "example": {
+                    "mensaje": "Usuario creado correctamente."
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/FaltanCredenciales"
+          },
+          "409": {
+            "description": "El correo ya está registrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Error"
+                    }
+                  ],
+                  "example": {
+                    "error": "Ya existe un usuario con ese correo."
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      }
+    },
+    "/api/v1/login": {
+      "post": {
+        "tags": [
+          "Autenticación"
+        ],
+        "summary": "Iniciar sesión",
+        "operationId": "iniciarSesion",
+        "description": "Verifica las credenciales, genera un JWT con el id del usuario y un identificador de sesión, y lo guarda en la cookie httpOnly `token`.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Credenciales"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sesión iniciada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Mensaje"
+                    }
+                  ],
+                  "example": {
+                    "mensaje": "Sesión iniciada."
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Set-Cookie": {
+                "description": "Cookie con el JWT de la sesión.",
+                "schema": {
+                  "type": "string",
+                  "example": "token=eyJhbGciOi...; Path=/; HttpOnly; SameSite=Lax"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/FaltanCredenciales"
+          },
+          "401": {
+            "description": "Correo o contraseña incorrectos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Error"
+                    }
+                  ],
+                  "example": {
+                    "error": "Correo o contraseña incorrectos."
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      }
+    },
+    "/api/v1/logout": {
+      "post": {
+        "tags": [
+          "Autenticación"
+        ],
+        "summary": "Cerrar sesión",
+        "operationId": "cerrarSesion",
+        "description": "Borra el identificador de sesión en la base de datos (invalida el token) y elimina la cookie.",
+        "responses": {
+          "200": {
+            "description": "Sesión cerrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Mensaje"
+                    }
+                  ],
+                  "example": {
+                    "mensaje": "Sesión cerrada."
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      }
+    },
+    "/api/v1/sesion": {
+      "get": {
+        "tags": [
+          "Autenticación"
+        ],
+        "summary": "Consultar la sesión activa",
+        "operationId": "obtenerSesion",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hay una sesión activa.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sesion"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No hay una sesión activa.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Error"
+                    }
+                  ],
+                  "example": {
+                    "error": "No hay una sesión activa."
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Camiseta": {
+        "type": "object",
+        "required": [
+          "id",
+          "nombre",
+          "descripcion",
+          "precio",
+          "imagenes",
+          "talles",
+          "tags"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "nombre": {
+            "type": "string",
+            "example": "Argentina Titular 2024"
+          },
+          "descripcion": {
+            "type": "string",
+            "example": "Camiseta oficial de la Selección Argentina."
+          },
+          "precio": {
+            "type": "number",
+            "minimum": 0,
+            "example": 90
+          },
+          "etiqueta": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "example": "BESTSELLER"
+          },
+          "año": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "example": "2024"
+          },
+          "liga_id": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "example": 1
+          },
+          "imagenes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "talles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CamisetaEntrada": {
+        "type": "object",
+        "required": [
+          "nombre",
+          "precio"
+        ],
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "example": "Argentina Titular 2024"
+          },
+          "descripcion": {
+            "type": "string",
+            "example": "Camiseta oficial de la Selección Argentina."
+          },
+          "precio": {
+            "type": "number",
+            "minimum": 0,
+            "example": 90
+          },
+          "etiqueta": {
+            "type": "string",
+            "example": "BESTSELLER"
+          },
+          "anio": {
+            "type": "string",
+            "example": "2024"
+          },
+          "liga_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "imagenes": {
+            "type": "array",
+            "description": "Archivos de imagen. Máximo cinco.",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "No se encontró un producto con el id ingresado."
+          }
+        }
+      },
+      "Mensaje": {
+        "type": "object",
+        "required": [
+          "mensaje"
+        ],
+        "properties": {
+          "mensaje": {
+            "type": "string",
+            "example": "Sesión iniciada."
+          }
+        }
+      },
+      "CamisetaEliminada": {
+        "type": "object",
+        "required": [
+          "mensaje",
+          "producto"
+        ],
+        "properties": {
+          "mensaje": {
+            "type": "string",
+            "example": "Producto eliminado correctamente."
+          },
+          "producto": {
+            "$ref": "#/components/schemas/Camiseta"
+          }
+        }
+      },
+      "Liga": {
+        "type": "object",
+        "required": [
+          "id",
+          "nombre"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 3
+          },
+          "nombre": {
+            "type": "string",
+            "example": "Liga Argentina"
+          }
+        }
+      },
+      "Credenciales": {
+        "type": "object",
+        "required": [
+          "email",
+          "pass"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "admin@90minutos.com"
+          },
+          "pass": {
+            "type": "string",
+            "format": "password",
+            "example": "unaClaveSegura"
+          }
+        }
+      },
+      "Sesion": {
+        "type": "object",
+        "required": [
+          "mensaje",
+          "autenticado",
+          "usuario"
+        ],
+        "properties": {
+          "mensaje": {
+            "type": "string",
+            "example": "Sesión activa."
+          },
+          "autenticado": {
+            "type": "boolean",
+            "example": true
+          },
+          "usuario": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 1
+              },
+              "correo": {
+                "type": "string",
+                "example": "admin@90minutos.com"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "DatosInvalidos": {
+        "description": "Los datos enviados son inválidos.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "IdInvalido": {
+        "description": "El ID debe ser un número entero positivo.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "ProductoNoEncontrado": {
+        "description": "No existe una camiseta con el ID indicado.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "ErrorInterno": {
+        "description": "Error interno del servidor.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NoAutenticado": {
+        "description": "No hay una sesión válida (falta la cookie, el token venció o la sesión se cerró).",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Error"
+                }
+              ],
+              "example": {
+                "error": "Debés iniciar sesión para realizar esta acción."
+              }
+            }
+          }
+        }
+      },
+      "FaltanCredenciales": {
+        "description": "Faltan el correo o la contraseña.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Error"
+                }
+              ],
+              "example": {
+                "error": "El correo y la contraseña son obligatorios."
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "token",
+        "description": "JWT firmado con JWT_SECRET, enviado en una cookie httpOnly (SameSite=Lax) que se crea al iniciar sesión. Vence en 1 día y se invalida al cerrar sesión."
+      }
+    }
+  },
+  "x-ext-urls": {}
+}

@@ -1,5 +1,7 @@
 'use strict';
 
+import { mostrarAviso } from './avisos.js';
+
 // El carrito vive en memoria: conserva los productos mientras la página está abierta.
 let productosEnCarrito = [];
 
@@ -142,7 +144,7 @@ export function inicializarCarrito() {
 
   if (botonFinalizar) {
     botonFinalizar.addEventListener('click', () => {
-      window.alert('Compra realizada correctamente!');
+      mostrarAviso('¡Compra realizada correctamente!');
     });
   }
 
