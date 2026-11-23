@@ -61,9 +61,12 @@ export async function insertarProducto(producto) {
 }
 
 export async function borrarPorId(id) {
-  const resultado = await pool.query('DELETE FROM productos WHERE id = $1', [id]);
+  const resultado = await pool.query(
+    `DELETE FROM productos WHERE id = $1 RETURNING ${CAMPOS_PRODUCTO}`,
+    [id]
+  );
 
-  return resultado.rowCount > 0; // Si el id no existe, devolvemos false.
+  return resultado.rows[0] ?? null; // Si el id no existe, devolvemos null.
 }
 
 export async function actualizarPorId(id, producto) {

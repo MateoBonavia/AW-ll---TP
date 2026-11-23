@@ -1,7 +1,6 @@
 'use strict';
 
-const API_BASE_URL = 'http://localhost:3000';
-const URL_PRODUCTOS = `${API_BASE_URL}/api/v1/productos`;
+import { URL_PRODUCTOS } from './config.js';
 
 export async function cargarProductos() {
   const respuesta = await fetch(URL_PRODUCTOS);

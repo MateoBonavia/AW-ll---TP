@@ -1,33 +1,26 @@
-import path from 'path';
-import multer from 'multer';
 import {
   buscarPorId,
   buscarTodos,
   insertarProducto,
   borrarPorId,
-  actualizarPorId
+  actualizarPorId,
 } from './productos.modelo.mjs';
 import {
   mostrarError,
   mostrarProducto,
   mostrarProductoCreado,
   mostrarProductos,
-  mostrarProductoEliminado
+  mostrarProductoEliminado,
 } from './productos.vista.mjs';
+import {
+  borrarImagenes,
+  rutasDeImagenes,
+  subirImagenes,
+} from './productos.imagenes.mjs';
 
 function leerId(valor) {
   const id = Number(valor);
   return Number.isInteger(id) && id > 0 ? id : null;
-}
-
-const subirImagenes = multer({
-  dest: path.resolve('../Frontend/recursos/subidas'),
-}).array('imagenes', 5);
-
-function rutasDeImagenes(req) {
-  return (req.files ?? []).map(
-    (archivo) => `./recursos/subidas/${archivo.filename}`
-  );
 }
 
 export async function obtenerProductos(req, res, next) {
@@ -69,16 +62,19 @@ export function crearProducto(req, res) {
       return mostrarError(res, 400, 'No se pudieron subir las imágenes.');
     }
 
+    const imagenesSubidas = rutasDeImagenes(req);
     const { nombre, descripcion, precio, etiqueta, anio, liga_id, talles, tags } =
       req.body ?? {};
 
     const nombreLimpio = String(nombre ?? '').trim();
 
     if (!nombreLimpio) {
+      await borrarImagenes(imagenesSubidas);
       return mostrarError(res, 400, 'El nombre es obligatorio.');
     }
 
     if (precio === undefined || precio === '' || !(Number(precio) >= 0)) {
+      await borrarImagenes(imagenesSubidas);
       return mostrarError(
         res,
         400,
@@ -94,7 +90,7 @@ export function crearProducto(req, res) {
         etiqueta: etiqueta || null,
         anio: anio || null,
         liga_id: liga_id || null,
-        imagenes: rutasDeImagenes(req),
+        imagenes: imagenesSubidas,
         talles: [].concat(talles ?? []),
         tags: String(tags ?? '')
           .split(',')
@@ -104,12 +100,13 @@ export function crearProducto(req, res) {
 
       return mostrarProductoCreado(res, producto);
     } catch (errorBD) {
-      console.log(errorBD);
+      // El producto no se guardó: sus imágenes no deben quedar huérfanas en disco.
+      console.error(errorBD);
+      await borrarImagenes(imagenesSubidas);
       return mostrarError(res, 500, 'No se pudo guardar el producto.');
     }
   });
 }
-
 
 export async function eliminarProducto(req, res, next) {
   const id = leerId(req.params.id);
@@ -129,7 +126,10 @@ export async function eliminarProducto(req, res, next) {
       );
     }
 
-    return mostrarProductoEliminado(res);
+    // Con el producto fuera de la BD, se borran también sus imágenes del disco.
+    await borrarImagenes(eliminado.imagenes);
+
+    return mostrarProductoEliminado(res, eliminado);
   } catch (error) {
     return next(error);
   }
@@ -137,22 +137,58 @@ export async function eliminarProducto(req, res, next) {
 
 export function actualizarProducto(req, res) {
   subirImagenes(req, res, async (error) => {
-    if (error) return mostrarError(res, 400, 'No se pudieron subir las imágenes.');
+    if (error) {
+      return mostrarError(res, 400, 'No se pudieron subir las imágenes.');
+    }
+
+    const imagenesSubidas = rutasDeImagenes(req);
     const id = leerId(req.params.id);
-    if (id === null) return mostrarError(res, 400, 'El id debe ser un número entero positivo.');
-    const actual = await buscarPorId(id);
-    if (!actual.length) return mostrarError(res, 404, 'No se encontró un producto con el id ingresado.');
-    const datos = req.body ?? {};
-    const nombre = String(datos.nombre ?? '').trim();
-    if (!nombre || !(Number(datos.precio) >= 0)) return mostrarError(res, 400, 'Los datos enviados son inválidos.');
+
+    if (id === null) {
+      await borrarImagenes(imagenesSubidas);
+      return mostrarError(res, 400, 'El id debe ser un número entero positivo.');
+    }
+
     try {
+      const actual = await buscarPorId(id);
+
+      if (!actual.length) {
+        await borrarImagenes(imagenesSubidas);
+        return mostrarError(
+          res,
+          404,
+          'No se encontró un producto con el id ingresado.'
+        );
+      }
+
+      const datos = req.body ?? {};
+      const nombre = String(datos.nombre ?? '').trim();
+
+      if (!nombre || !(Number(datos.precio) >= 0)) {
+        await borrarImagenes(imagenesSubidas);
+        return mostrarError(res, 400, 'Los datos enviados son inválidos.');
+      }
+
+      const reemplazaImagenes = imagenesSubidas.length > 0;
+
       const producto = await actualizarPorId(id, {
-        nombre, descripcion: datos.descripcion ?? '', precio: Number(datos.precio), etiqueta: datos.etiqueta || null,
+        nombre,
+        descripcion: datos.descripcion ?? '',
+        precio: Number(datos.precio),
+        etiqueta: datos.etiqueta || null,
         anio: datos.anio || datos['año'] || actual[0]['año'],
         liga_id: datos.liga_id || actual[0].liga_id,
-        imagenes: req.files?.length ? rutasDeImagenes(req) : actual[0].imagenes,
+        imagenes: reemplazaImagenes ? imagenesSubidas : actual[0].imagenes,
       });
+
+      // Las imágenes reemplazadas ya no las usa ningún producto.
+      if (reemplazaImagenes) await borrarImagenes(actual[0].imagenes);
+
       return mostrarProducto(res, producto);
-    } catch (errorBD) { return mostrarError(res, 500, 'No se pudo actualizar el producto.'); }
+    } catch (errorBD) {
+      console.error(errorBD);
+      await borrarImagenes(imagenesSubidas);
+      return mostrarError(res, 500, 'No se pudo actualizar el producto.');
+    }
   });
 }

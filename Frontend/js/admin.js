@@ -1,13 +1,12 @@
 'use strict';
 
 import { actualizarProducto } from './productos.js';
+import { URL_PRODUCTOS } from './config.js';
 
 // Copia de la lista del catálogo para buscar el producto desde los botones de cada tarjeta.
 let productosAdmin = [];
 let idProductoEnEdicion = null;
 let alActualizarCatalogo = () => {};
-
-const URL_PRODUCTOS = 'http://localhost:3000/api/v1/productos';
 
 let idProductoAEliminar = null; // Para recordar el producto que se quiere eliminar mientras se abre el diálogo de confirmación.
 
@@ -139,14 +138,16 @@ export function inicializarAccionesCatalogo(productos, ligas,  alActualizar = ()
           method: 'DELETE',
         });
 
-        // 204: se borró y no hay cuerpo para leer. Cualquier otro caso trae { error }.
+        // Éxito: { mensaje, producto }. Error: { error }.
+        const datos = await respuesta.json().catch(() => ({}));
+
         if (!respuesta.ok) {
-          const { error } = await respuesta.json().catch(() => ({}));
-          alert(error ?? 'No se pudo eliminar el producto.');
+          alert(datos.error ?? 'No se pudo eliminar el producto.');
           return;
         }
 
         cerrarDialogo(dialogoConfirmacion);
+        alert(datos.mensaje);
         window.location.reload(); // vuelve a pedir el catálogo sin el producto borrado
       } catch (error) {
         console.error(error);

@@ -1,19 +1,28 @@
+import {
+  responderDatos,
+  responderError,
+  responderMensaje,
+} from '../respuestas.mjs';
+
 export function mostrarProductos(res, productos) {
-  return res.status(200).json(productos);
+  return responderDatos(res, 200, productos);
 }
 
 export function mostrarProducto(res, producto) {
-  return res.status(200).json(producto);
+  return responderDatos(res, 200, producto);
 }
 
 export function mostrarError(res, estado, mensaje) {
-  return res.status(estado).json({ error: mensaje });
+  return responderError(res, estado, mensaje);
 }
 
 export function mostrarProductoCreado(res, producto) {
-  return res.status(201).json(producto);
+  return responderDatos(res, 201, producto);
 }
 
-export function mostrarProductoEliminado(res) {
-  return res.status(204).send();
+// Devuelve el producto borrado para que el Front-End sepa qué se eliminó.
+export function mostrarProductoEliminado(res, producto) {
+  return responderMensaje(res, 200, 'Producto eliminado correctamente.', {
+    producto,
+  });
 }

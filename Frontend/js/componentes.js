@@ -105,6 +105,11 @@ function inicializarDialogosCuenta() {
 
       const datos = await respuesta.json();
 
+      if (!respuesta.ok) {
+        mensajeRegistro.textContent = datos.error ?? 'No se pudo crear el usuario.';
+        return;
+      }
+
       registro.close();
       login.showModal();
     } catch {

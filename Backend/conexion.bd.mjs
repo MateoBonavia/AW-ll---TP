@@ -1,14 +1,6 @@
-import {Pool} from 'pg'
-import dotenv from 'dotenv'
+import { Pool } from 'pg';
+import { BD } from './config.mjs';
 
-dotenv.config()
+const pool = new Pool(BD);
 
-const pool = new Pool({
-    host: process.env.BD_HOST || 'localhost',
-    user: process.env.BD_USER,
-    password: process.env.BD_PASS,
-    database: process.env.BD_BD,
-    port: process.env.BD_PORT
-})
-
-export default pool
+export default pool;
