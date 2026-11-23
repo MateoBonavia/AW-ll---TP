@@ -7,6 +7,31 @@ GET http://localhost:3000/api/v1/productos/1
 ### GET a todas las ligas
 GET http://localhost:3000/api/v1/ligas
 
+### --- Autenticación ---
+### La extensión REST Client guarda la cookie del login y la envía en las
+### peticiones siguientes: POST, PUT y DELETE de productos la requieren.
+
+### Registrar un usuario
+POST http://localhost:3000/api/v1/registrarse
+Content-Type: application/json
+
+{
+    "email": "admin@90minutos.com",
+    "pass": "clave-de-prueba"
+}
+
+### Iniciar sesión (crea la cookie token con el JWT)
+POST http://localhost:3000/api/v1/login
+Content-Type: application/json
+
+{
+    "email": "admin@90minutos.com",
+    "pass": "clave-de-prueba"
+}
+
+### Consultar la sesión activa
+GET http://localhost:3000/api/v1/sesion
+
 ### POST de un producto (sin imagen)
 POST http://localhost:3000/api/v1/productos
 Content-Type: application/json
@@ -20,3 +45,6 @@ Content-Type: application/json
 
 ### DELETE de un producto
 DELETE http://localhost:3000/api/v1/productos/12
+
+### Cerrar sesión (invalida el token y borra la cookie)
+POST http://localhost:3000/api/v1/logout

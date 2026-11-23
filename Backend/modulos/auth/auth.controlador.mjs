@@ -4,17 +4,18 @@ import { nanoid } from 'nanoid';
 import { JWT_SECRET } from '../../config.mjs';
 import {
   buscarPorCorreo,
-  buscarPorSesion,
   guardarSesion,
   insertarUsuario,
 } from './auth.modelo.mjs';
 import {
   mostrarError,
   mostrarSesion,
+  mostrarSesionCerrada,
   mostrarSesionIniciada,
   mostrarSinSesion,
   mostrarUsuarioCreado,
 } from './auth.vista.mjs';
+import { usuarioDeSesion } from './auth.middleware.mjs';
 
 function leerCredenciales(body) {
   const email = String(body?.email ?? '').trim();
@@ -53,21 +54,24 @@ export async function iniciarSesion(req, res, next) {
 }
 
 export async function obtenerSesion(req, res, next) {
-  const token = req.cookies.token;
-  if (!token) return mostrarSinSesion(res);
-
-  let datos;
   try {
-    datos = jwt.verify(token, JWT_SECRET);
-  } catch {
-    return mostrarSinSesion(res);
-  }
-
-  try {
-    const usuario = await buscarPorSesion(datos.id, datos.sessionId);
+    const usuario = await usuarioDeSesion(req);
     if (!usuario) return mostrarSinSesion(res);
 
     return mostrarSesion(res, usuario);
+  } catch (error) {
+    return next(error);
+  }
+}
+
+export async function cerrarSesion(req, res, next) {
+  try {
+    const usuario = await usuarioDeSesion(req);
+
+    // Borrar el sessionId invalida el token aunque alguien conserve una copia.
+    if (usuario) await guardarSesion(usuario.id, null);
+
+    return mostrarSesionCerrada(res);
   } catch (error) {
     return next(error);
   }

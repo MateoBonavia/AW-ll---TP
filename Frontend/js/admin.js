@@ -1,9 +1,14 @@
 'use strict';
 
-import { actualizarProducto } from './productos.js';
-import { URL_PRODUCTOS } from './config.js';
+import {
+  actualizarProducto,
+  crearProducto,
+  eliminarProducto,
+} from './productos.js';
+import { mostrarAviso, mostrarMensajeEnDialogo } from './avisos.js';
+import { actualizarEstadoCuenta } from './componentes.js';
 
-// Copia de la lista del catálogo para buscar el producto desde los botones de cada tarjeta.
+// Misma lista que usa el catálogo: los cambios se reflejan sin recargar la página.
 let productosAdmin = [];
 let idProductoEnEdicion = null;
 let alActualizarCatalogo = () => {};
@@ -12,6 +17,9 @@ let idProductoAEliminar = null; // Para recordar el producto que se quiere elimi
 
 function abrirDialogo(dialogo) {
   if (!dialogo) return;
+
+  // Cada apertura empieza sin mensajes de un intento anterior.
+  mostrarMensajeEnDialogo(dialogo, '');
 
   // showModal ofrece un diálogo accesible; open es una alternativa simple.
   if (typeof dialogo.showModal === 'function') {
@@ -88,7 +96,33 @@ function cargarOpcionesDeLigas(ligas) {
   });
 }
 
-export function inicializarAccionesCatalogo(productos, ligas,  alActualizar = () => {}) {
+// Muestra el error en el diálogo. Si la sesión venció (401), se actualiza
+// la interfaz para ocultar las acciones de administración.
+function informarError(dialogo, error) {
+  console.error(error);
+
+  const texto =
+    error instanceof TypeError
+      ? 'No se pudo conectar con el servidor.'
+      : error.message;
+
+  mostrarMensajeEnDialogo(dialogo, texto);
+
+  if (error.estado === 401) actualizarEstadoCuenta();
+}
+
+// Evita envíos dobles mientras se espera la respuesta del servidor.
+async function conBotonOcupado(boton, accion) {
+  if (boton) boton.disabled = true;
+
+  try {
+    await accion();
+  } finally {
+    if (boton) boton.disabled = false;
+  }
+}
+
+export function inicializarAccionesCatalogo(productos, ligas, alActualizar = () => {}) {
   productosAdmin = productos;
   cargarOpcionesDeLigas(ligas);
   alActualizarCatalogo = alActualizar;
@@ -104,7 +138,7 @@ export function inicializarAccionesCatalogo(productos, ligas,  alActualizar = ()
 
   // Un único listener gestiona los botones de todas las tarjetas, incluso tras un filtro.
   if (contenedor) {
-    contenedor.addEventListener('click', (evento) => {
+    const ejecutarAccion = (evento) => {
       const accion = evento.target.closest('[data-accion]');
 
       // La tarjeta es un enlace al detalle: la acción propia no debe navegar.
@@ -120,6 +154,13 @@ export function inicializarAccionesCatalogo(productos, ligas,  alActualizar = ()
 
       if (accion.dataset.accion === 'eliminar') abrirConfirmacion(producto);
       if (accion.dataset.accion === 'editar') abrirEdicion(producto);
+    };
+
+    contenedor.addEventListener('click', ejecutarAccion);
+
+    // Los botones de las tarjetas también responden a Enter y Espacio.
+    contenedor.addEventListener('keydown', (evento) => {
+      if (evento.key === 'Enter' || evento.key === ' ') ejecutarAccion(evento);
     });
   }
 
@@ -130,34 +171,29 @@ export function inicializarAccionesCatalogo(productos, ligas,  alActualizar = ()
     });
   });
 
-  // Por ahora solo cierra el diálogo; acá se haría el DELETE contra la API.
-    if (botonConfirmarEliminacion) {
-    botonConfirmarEliminacion.addEventListener('click', async () => {
-      try {
-        const respuesta = await fetch(`${URL_PRODUCTOS}/${idProductoAEliminar}`, {
-          method: 'DELETE',
-        });
+  if (botonConfirmarEliminacion) {
+    botonConfirmarEliminacion.addEventListener('click', () =>
+      conBotonOcupado(botonConfirmarEliminacion, async () => {
+        try {
+          const { mensaje } = await eliminarProducto(idProductoAEliminar);
 
-        // Éxito: { mensaje, producto }. Error: { error }.
-        const datos = await respuesta.json().catch(() => ({}));
+          const indice = productosAdmin.findIndex(
+            (producto) => producto.id === idProductoAEliminar
+          );
+          if (indice !== -1) productosAdmin.splice(indice, 1);
 
-        if (!respuesta.ok) {
-          alert(datos.error ?? 'No se pudo eliminar el producto.');
-          return;
+          cerrarDialogo(dialogoConfirmacion);
+          alActualizarCatalogo();
+          mostrarAviso(mensaje);
+        } catch (error) {
+          informarError(dialogoConfirmacion, error);
         }
-
-        cerrarDialogo(dialogoConfirmacion);
-        alert(datos.mensaje);
-        window.location.reload(); // vuelve a pedir el catálogo sin el producto borrado
-      } catch (error) {
-        console.error(error);
-        alert('No se pudo conectar con el servidor.');
-      }
-    });
+      })
+    );
   }
 
   if (formularioEdicion) {
-    formularioEdicion.addEventListener('submit', async (evento) => {
+    formularioEdicion.addEventListener('submit', (evento) => {
       evento.preventDefault();
 
       const productoActual = productosAdmin.find((producto) => producto.id === idProductoEnEdicion);
@@ -168,15 +204,17 @@ export function inicializarAccionesCatalogo(productos, ligas,  alActualizar = ()
       productoEditado.set('talles', JSON.stringify(productoActual.talles));
       productoEditado.set('tags', JSON.stringify(productoActual.tags));
 
-      try {
-        const actualizado = await actualizarProducto(idProductoEnEdicion, productoEditado);
-        const indice = productosAdmin.findIndex((producto) => producto.id === actualizado.id);
-        Object.assign(productosAdmin[indice], actualizado);
-        cerrarDialogo(dialogoEdicion);
-        alActualizarCatalogo();
-      } catch (error) {
-        window.alert(error.message);
-      }
+      return conBotonOcupado(evento.submitter, async () => {
+        try {
+          const actualizado = await actualizarProducto(idProductoEnEdicion, productoEditado);
+          Object.assign(productoActual, actualizado);
+          cerrarDialogo(dialogoEdicion);
+          alActualizarCatalogo();
+          mostrarAviso('Producto actualizado correctamente.');
+        } catch (error) {
+          informarError(dialogoEdicion, error);
+        }
+      });
     });
   }
 
@@ -184,29 +222,21 @@ export function inicializarAccionesCatalogo(productos, ligas,  alActualizar = ()
     botonCrearProducto.addEventListener('click', abrirCreacion);
   }
 
-  // Por ahora solo cierra el diálogo; acá se haría el POST con los datos del formulario.
-    if (formularioCreacion) {
-    formularioCreacion.addEventListener('submit', async (evento) => {
+  if (formularioCreacion) {
+    formularioCreacion.addEventListener('submit', (evento) => {
       evento.preventDefault();
 
-      try {
-        const respuesta = await fetch(URL_PRODUCTOS, {
-          method: 'POST',
-          body: new FormData(formularioCreacion),
-        });
-
-        if (!respuesta.ok) {
-          const { error } = await respuesta.json().catch(() => ({}));
-          alert(error ?? 'No se pudo crear el producto.');
-          return;
+      return conBotonOcupado(evento.submitter, async () => {
+        try {
+          const creado = await crearProducto(new FormData(formularioCreacion));
+          productosAdmin.push(creado);
+          cerrarDialogo(dialogoCreacion);
+          alActualizarCatalogo();
+          mostrarAviso('Producto creado correctamente.');
+        } catch (error) {
+          informarError(dialogoCreacion, error);
         }
-
-        cerrarDialogo(dialogoCreacion);
-        window.location.reload(); // vuelve a pedir el catálogo y se ve el producto nuevo
-      } catch (error) {
-        console.error(error);
-        alert('No se pudo conectar con el servidor.');
-      }
+      });
     });
   }
 }

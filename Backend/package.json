@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch index.mjs"
+    "dev": "node --watch index.mjs",
+    "start": "node index.mjs",
+    "bd:recrear": "node scripts/recrear-bd.mjs"
   },
   "keywords": [],
   "author": "",
